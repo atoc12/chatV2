@@ -21,6 +21,8 @@ const opcionSolicitud = require('./DataBase/schemas/usuario/function/contactos/s
 const BorrarContacto = require('./DataBase/schemas/usuario/function/contactos/borrar.js');
 const ObtenerChat = require('./DataBase/schemas/chat/function/chat/obtener.js');
 const AgregarMensaje = require('./DataBase/schemas/chat/function/message/obtener.js');
+const path = require("path");
+
 
 
 app.use(cors({}));
@@ -35,13 +37,13 @@ app.use(cookieParser());
 // }));
 app.use(express.json());    
 app.use('/usuario',userApi);
-app.use(
-    '*',
-    createProxyMiddleware({
-      target: 'http://localhost:5173',
-      changeOrigin: true,
-    })
-);
+// app.use(
+//     '*',
+//     createProxyMiddleware({
+//       target: 'http://localhost:5173',
+//       changeOrigin: true,
+//     })
+// );
 
 
 
@@ -280,8 +282,12 @@ io.on("connection",(socket)=>{
 
 
 
+const publicPath = path.resolve(__dirname, '../dist');
+app.use(express.static(publicPath));
 
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
 
 
 
