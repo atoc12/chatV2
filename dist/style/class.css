@@ -1,0 +1,15 @@
+.btn{
+    border: none;
+    background: none;
+}
+
+.noti-alert{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    display: block;
+    border-radius: 50%;
+    top:0;
+    background-color: red;
+    right: 0;
+}

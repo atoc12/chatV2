@@ -1,0 +1,12 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    font-family: 'Roboto', sans-serif;
+}
+*::-webkit-scrollbar{
+    width: 2px;
+}
+*::-webkit-scrollbar-thumb{
+    width: 2px;
+    background-color: rgb(8, 14, 32);
+}
