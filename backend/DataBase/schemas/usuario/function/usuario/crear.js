@@ -11,7 +11,7 @@ const CrearUsuario = async(req,res=null)=>{// funcion que permite crear registro
             usuario.session=session_value;
         }
         usuario.save();
-        let mensaje = {message:"datos almacenados con exito",data:{_id:usuario._id.toString(),name:usuario.name,email:usuario.email},session:session_value};
+        let mensaje = {message:"datos almacenados con exito",data:{_id:usuario._id.toString(),name:usuario.name,email:usuario.email,picture:usuario.picture},session:session_value};
         return res ? res.json(mensaje) : {mensaje};
     }catch(err){
         let errores=err.errors;

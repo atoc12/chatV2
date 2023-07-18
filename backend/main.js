@@ -2,6 +2,9 @@ require('./DataBase/conexion.js');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
+const multer = require("multer");
+const fs = require('fs');
 const app = express();
 const http = require("http");
 const servidor = http.createServer(app);
@@ -22,8 +25,19 @@ const BorrarContacto = require('./DataBase/schemas/usuario/function/contactos/bo
 const ObtenerChat = require('./DataBase/schemas/chat/function/chat/obtener.js');
 const AgregarMensaje = require('./DataBase/schemas/chat/function/message/obtener.js');
 const path = require("path");
-
-
+const mimmeTypes = require("mime-types");
+const carpetaPath = path.resolve(__dirname, '../carpetas');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null,  carpetaPath+'/usuario/icon/');
+    },
+    filename: function (req, file, cb) {
+      console.log(file);
+      cb(null, file.originalname+"."+mimmeTypes.extension(file.mimetype))
+    }
+  })
+  
+const upload = multer({storage:storage});
 
 app.use(cors({}));
 app.use(cookieParser());
@@ -36,7 +50,9 @@ app.use(cookieParser());
     
 // }));
 app.use(express.json());    
+// app.use(fileUpload());
 app.use('/usuario',userApi);
+app.use('/carpetas', express.static(carpetaPath));
 // app.use(
 //     '*',
 //     createProxyMiddleware({
@@ -88,6 +104,29 @@ io.on("connection",(socket)=>{
             console.log(err);
         }
     })
+    /*----------------------Ajustes--------------------------------------------- */
+    socket.on("actualizar-perfil", async (datos) => {
+        try {
+            let query =await  ActualizarUsuario({
+                body:{
+                    search:{
+                        _id:datos.user._id
+                    },
+                    update:datos.update
+                }
+            });
+            console.log(query);
+            socket.emit("actualizacion-perfil",{
+                name:query.update.name,
+                email:query.update.email,
+                picture:query.update.picture,
+                _id:query.update._id
+            })
+        } catch (err) {
+          console.log(err);
+        }
+      });
+      
     /*----------------------notificaciones--------------------------------------*/
     socket.on("obtener-notificaciones",async(datos)=>{
         try{
@@ -255,6 +294,9 @@ io.on("connection",(socket)=>{
         console.log("usuario desconectado")
     })
 
+    socket.on("error", (error) => {
+        console.error("Error en la conexión con el servidor:", error);
+    });
 
 
 
@@ -282,13 +324,22 @@ io.on("connection",(socket)=>{
 
 
 
+// Servir archivos estáticos en la ruta '/carpetas'
+
+
 const publicPath = path.resolve(__dirname, '../dist');
 app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
-
+app.post("/subir/archivo",upload.single('lol'),async (req,res)=>{
+    try{
+        res.json({message:"hola mundo"});
+    }catch(err){
+        console.log(err);
+    }
+})
 
 
 
