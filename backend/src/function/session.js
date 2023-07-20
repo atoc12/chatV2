@@ -8,5 +8,4 @@ const idGenerator=()=>{
     }
       return btoa(cadenaAleatoria);
 }
-
 module.exports = idGenerator;

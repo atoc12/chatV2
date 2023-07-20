@@ -4,6 +4,7 @@ const userSchema = new Schema({
         type:String,
         minlength:3,
         required:true,
+        unique:true,
     },
     password:{
         type:String,
@@ -39,20 +40,6 @@ const userSchema = new Schema({
                 type:Schema.Types.ObjectId,
                 ref:"chats",
             },
-            name:String,
-            age:Number,
-            socket_id:{
-                type:String,
-                default:null
-            },
-            conexion:{
-                type:Boolean,
-                default:false,
-            },
-            timestamp: {
-                type: Date,
-                default: Date.now,
-            }
         }
     ],
     notificaciones:[
@@ -60,6 +47,7 @@ const userSchema = new Schema({
             sender:String,
             name:String,
             content:String,
+            reason:String,
             timestamp: {
                 type: Date,
                 default: Date.now,
@@ -89,7 +77,7 @@ const userSchema = new Schema({
         default:null
     }
 });
-
+userSchema.index({ name: "text" });
 const User = model('usuarios',userSchema);
 
 module.exports = User;
