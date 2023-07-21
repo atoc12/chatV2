@@ -7,9 +7,12 @@ const userApi = require('./DataBase/schemas/usuario/user.api.js');
 const {BorrarNotificaciones,CrearNotificaciones,ObtenerNotificaciones} = require('./src/function/notificaciones/moduel.js');
 const {UserConnect,ValidarToken,UserDisconnect, ActualizarPerfil, ObtenerUsuario} = require('./src/function/module.js')
 const {BorrarContactos,ObtenerContactos} = require('./src/function/contactos/module.js')
-const {CrearSolicitudes,ObtenerSolicitudes,ConfirmarSolicitud} = require('./src/function/contactos/solicitud/module.js');
+const {CrearSolicitudes,ObtenerSolicitudes,ConfirmarSolicitud, Borrarsolicitudes} = require('./src/function/contactos/solicitud/module.js');
 const {ObtenerChats,ObtenerMensajes} = require('./src/function/chat/module.js');
 const User = require('./DataBase/schemas/usuario/usuario.js');
+const CrearPublicacion = require('./DataBase/schemas/publicaciones/function/crear.js');
+const ObtenerPublicacion = require('./DataBase/schemas/publicaciones/function/obtener.js');
+const Publicacion = require('./DataBase/schemas/publicaciones/publicaciones.js');
 /*--------------------------------Middelware----------------------------------------*/
 const carpetaPath = path.resolve(__dirname, '../carpetas');
 const storage = multer.diskStorage({
@@ -51,6 +54,7 @@ io.on("connection",(socket)=>{
     socket.on("obtener-usuario",async (datos)=>await ObtenerUsuario(datos,socket) );
     /*-------------------------Contactos---------------------------------------*/
     socket.on("obtener-solicitud",async (datos)=>await ObtenerSolicitudes(datos,socket));
+    socket.on("borrar-solicitud",async (datos)=> await Borrarsolicitudes(datos,socket));
     socket.on("enviar-solicitud",async(datos)=>await CrearSolicitudes(datos,socket));
     socket.on("confirmar-solicitud",async (datos)=>await ConfirmarSolicitud(datos,socket) );
     socket.on("obtener-contactos",async(datos)=>await ObtenerContactos(datos,socket));
@@ -61,15 +65,56 @@ io.on("connection",(socket)=>{
     /*--------------------------------Buscador---------------------------------- */
     socket.on("buscar-usuario",async(datos)=>{
         try{
-            let resultado = await User.find({ name: { $regex: new RegExp(`^${datos}`, "i") } }).select('name picture _id');
+            // console.log("a");
+            let resultado = await User.find({ name: { $regex: new RegExp(`${datos}`, "i") } }).select('name picture _id');
             socket.emit("busqueda-resultado",resultado);
         }catch(err){
             console.log(err);
         }
     })
+    /*---------------------Publicaciones---------------------------------------- */
+    socket.on("buscar-publicacion",async(datos)=>{
+        try{
+            let resultado = await Publicacion.find({ content:{$regex: new RegExp(`${datos}`, "i") } });
+            socket.emit("busqueda-resultado",resultado);
+        }catch(err){
+            console.log(err);
+        }
+    })
+    socket.on("obtener-publicacion",async (datos)=>{
+        try{
+            // console.log(datos);
+            let res = await ObtenerPublicacion({body:{
+                search:datos
+            }});
+            socket.emit("recibir-publicacion",res);
+        }catch(err){
+            console.log(err);
+        }
+    })
+    socket.on("crear-publicacion",async (datos)=>{
+        try{
+            let publicacion_structure = {
+                creator:datos.user._id,
+                content:datos.publicacion.content,
+                picture:datos.user.picture,
+                timestap:datos.publicacion.timestap
+            }
+            let res = await CrearPublicacion({body:publicacion_structure})
+        }catch(err){
+            console.log(err);
+        }
+    })
+    socket.on("borrar-publicacion",async(datos)=>{
+        try{
+
+        }catch(err){
+            console.log(err);
+        }
+    })
     /*----------------------------Conexion------------------------------------- */
-    socket.on("disconnect",async(data)=>await UserDisconnect(user[socket.id],socket))
-    socket.on("cerrar",async(data)=>await UserDisconnect(user[socket.id],socket))
+    socket.on("disconnect",async(data)=>await UserDisconnect(user[socket.id],null,socket))
+    socket.on("cerrar",async(data)=>await UserDisconnect(user[socket.id],data,socket))
     socket.on("error", (error) => console.error("Error en la conexión con el servidor:", error));
 })
 // Servir archivos estáticos en la ruta '/carpetas'

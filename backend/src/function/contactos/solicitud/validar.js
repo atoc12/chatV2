@@ -14,7 +14,10 @@ const ConfirmarSolicitud = async (datos,socket)=>{
             socket.emit("nuevo-contacto",true);
             socket.to(datos.data._id).emit("recibir-notificacion",true);
             socket.emit("recibir-notificacion",true);
+            socket.to(datos.data._id).emit("nueva-solicitud",true);
         }
+        socket.emit("actualizar-usuario-info",true);
+        socket.to(datos.data._id).emit("actualizar-usuario-info",true);
         socket.emit("nueva-solicitud",true);
     }catch(err){console.log(err);}
 }

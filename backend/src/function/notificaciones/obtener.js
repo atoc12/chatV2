@@ -10,7 +10,9 @@ const ObtenerNotificaciones =async (datos,socket)=>{
                 }
             }
         })
-        socket.emit("nuevas-notificaciones",query.notificaciones);
+        if(query.notificaciones){
+            socket.emit("nuevas-notificaciones",query.notificaciones);
+        }
     }catch(err){
         console.log(err);
     }

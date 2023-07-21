@@ -48,6 +48,10 @@ const userSchema = new Schema({
             name:String,
             content:String,
             reason:String,
+            see:{
+                type:Boolean,
+                default:false,
+            },
             timestamp: {
                 type: Date,
                 default: Date.now,

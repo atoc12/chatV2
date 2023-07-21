@@ -16,6 +16,7 @@ const ObtenerUsuarios = async (req,res=null)=>{
                     _id:resultado._id,
                     email:resultado.email,
                     name: resultado.name,
+                    solicitud:resultado.solicitud,
                     picture:resultado.picture
                 }
                 return res.json({message:"exito",data:resultado,session:newId});

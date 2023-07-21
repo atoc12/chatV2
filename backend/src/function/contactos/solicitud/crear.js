@@ -14,6 +14,8 @@ const CrearSolicitudes =async(datos,socket)=>{
         })
         socket.to(resultado.socket).emit("recibir-notificacion",true);
         socket.to(resultado.socket).emit("nueva-solicitud",true);
+        socket.emit("actualizar-usuario-info",true);
+        
     }catch(err){
         console.log(err);
     }
