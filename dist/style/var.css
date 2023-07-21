@@ -1,6 +1,13 @@
 :root{
     /*------------------Fondos--------------------------------*/
-    --background-primary:white;
-    --bacground-secondary:rgb(223, 223, 223);
+    --background-primary:red;
+    --background-secondary:rgb(223, 223, 223);
     --background-hover:gray;
+    /*-----------------Botones------------------------------- */
+    --button-primary:black;
+    --button-secondary:black;
+    --button-hover:red;
+    /*-----------------Scroll-------------------------------*/
+    --scroll-color:cyan;
+    --scroll-color-secondary:blue;
 }
