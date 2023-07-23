@@ -20,6 +20,7 @@ const ObtenerPublicacion =async (req,res=null)=>{
                     picture: ind.picture,
                     content:data.content,
                     like:data.like,
+                    status:data.status,
                     channels: data.channels,
                     categories: data.categories,
                     timestamp: data.timestamp,

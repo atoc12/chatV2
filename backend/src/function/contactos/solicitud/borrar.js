@@ -13,7 +13,10 @@ const Borrarsolicitudes =async (datos,socket)=>{
             }
         })    
         console.log(res)
-        socket.to(datos.data).emit("actualizar-usuario-info",true);
+        console.log(datos);
+        socket.join(datos.data._id);
+        socket.to(datos.data._id).emit("nueva-solicitud",true);
+        socket.leave(datos.data._id);
         socket.emit("actualizar-usuario-info",true);
     }catch(err){
         console.log(err);

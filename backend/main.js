@@ -13,6 +13,8 @@ const User = require('./DataBase/schemas/usuario/usuario.js');
 const CrearPublicacion = require('./DataBase/schemas/publicaciones/function/crear.js');
 const ObtenerPublicacion = require('./DataBase/schemas/publicaciones/function/obtener.js');
 const Publicacion = require('./DataBase/schemas/publicaciones/publicaciones.js');
+const ActualizarPublicacion = require('./DataBase/schemas/publicaciones/function/actualizar.js');
+const BorrarPublicacion = require('./DataBase/schemas/publicaciones/function/borrar.js');
 /*--------------------------------Middelware----------------------------------------*/
 const carpetaPath = path.resolve(__dirname, '../carpetas');
 const storage = multer.diskStorage({
@@ -66,7 +68,23 @@ io.on("connection",(socket)=>{
     socket.on("buscar-usuario",async(datos)=>{
         try{
             // console.log("a");
+            // if()
             let resultado = await User.find({ name: { $regex: new RegExp(`${datos}`, "i") } }).select('name picture _id');
+            // console.log()
+            socket.emit("busqueda-resultado",resultado);
+        }catch(err){
+            console.log(err);
+        }
+    })
+    socket.on("buscar",async(datos)=>{
+        try{
+            let busqueda = new RegExp(datos.search, 'i');
+            let resultado = [];
+            if(datos.filter == 'usuario'){
+                resultado = await User.find({}).where('name').regex(busqueda);
+            }else if(datos.filter == 'publicacion'){
+                resultado = await Publicacion.find({}).where('content').regex(busqueda);
+            }
             socket.emit("busqueda-resultado",resultado);
         }catch(err){
             console.log(err);
@@ -75,7 +93,7 @@ io.on("connection",(socket)=>{
     /*---------------------Publicaciones---------------------------------------- */
     socket.on("buscar-publicacion",async(datos)=>{
         try{
-            let resultado = await Publicacion.find({ content:{$regex: new RegExp(`${datos}`, "i") } });
+            let resultado = await Publicacion.find({ content:{$regex: new RegExp(`${datos.search}`, "i") } });
             socket.emit("busqueda-resultado",resultado);
         }catch(err){
             console.log(err);
@@ -97,6 +115,7 @@ io.on("connection",(socket)=>{
             let publicacion_structure = {
                 creator:datos.user._id,
                 content:datos.publicacion.content,
+                categories:datos.publicacion.categories,
                 picture:datos.user.picture,
                 timestap:datos.publicacion.timestap
             }
@@ -108,6 +127,29 @@ io.on("connection",(socket)=>{
     socket.on("borrar-publicacion",async(datos)=>{
         try{
 
+        }catch(err){
+            console.log(err);
+        }
+    })
+    socket.on("actualizar-publicacion",async(datos)=>{
+        try{
+            await ActualizarPublicacion({
+                body:{
+                    search:{
+                        _id:datos.publicacion,
+                    },
+                    update:datos.update,
+                    user:datos.user
+                }
+            });
+        }catch(err){
+            console.log(err);
+        }
+    })
+    socket.on("borrar-publicacion",async(datos)=>{
+        try{
+            await BorrarPublicacion({body:{search:{_id:datos.publicacion,},user:datos.user}});
+            socket.emit("nuevas-publicaciones",{});
         }catch(err){
             console.log(err);
         }

@@ -12,6 +12,7 @@ const UserConnect = async (datos,socket)=>{
             }
         }},null,socket.id);
         actualizar.update.contactos.map(data=>{
+            socket.join(data._id.toString());
             socket.to(data._id.toString()).emit("nuevo-contacto",true);
         })
         return actualizar.update;

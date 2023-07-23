@@ -23,20 +23,19 @@ const publicacionSchema = new Schema({
     ],
     content:{
         type:String,
-        require:true
+        require:true,
     },
-    categories:[
-        {
-            _id:false,
-            name:String,          
-        }
-    ],
+    categories:[],
     channels:[
         {   
             _id:false,
             name:String,
         }
     ],
+    status:{
+        type:Boolean,
+        default:true,
+    },
     timestamp: {
         type: String,
         default: Date
