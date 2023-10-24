@@ -1,0 +1,19 @@
+{
+    "signIn":{
+        "tittle":"Iniciar sesión",
+        "inputs":{
+            "email":"Correo",
+            "password":"Contraseña",
+            "send":"Enviar"
+        },
+        "messages":{
+
+        }
+    },
+    "signUp":{
+        "tittle":"Registrarse",
+        "messages":{
+
+        }
+    }
+}

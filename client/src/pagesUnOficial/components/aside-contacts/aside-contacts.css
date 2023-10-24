@@ -1,0 +1,109 @@
+@media screen and (min-width:661px) {
+    .active-aside{
+        width: 200px;
+        max-width: 200px;
+        animation: op 500ms ease-in-out ;
+    }
+    .disable-aside{
+        width: 0px;
+        opacity: 0;
+        /* max-width: 0px; */
+    }
+    .aside-contacts-options>button{
+        display: flex;
+        gap: 2.5rem;
+        font-size: 1rem;
+        padding: 0.5em;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.196);
+    }
+    .aside-contacts-options>button:hover{
+        background-color: rgba(0, 255, 255, 0.031);
+    }
+    .aside-contacts-options>button>span{
+        text-shadow: 0px 2px 5px black;
+    }
+}
+@media screen and (max-width:660px) {
+    .aside-contacts-options>button{
+        display: none;
+    }
+    .btn-aside-contact{
+        display: none;
+    }
+}
+#aside-contacts{
+    overflow: hidden;
+    transition: width 20ms linear;
+    display: flex;  
+    flex-flow: column nowrap;
+    position: relative;
+    z-index: 99;
+    transition: width 200ms linear;
+}
+.btn-aside-contact{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 9;
+    color: var(--font-color-primary);
+    place-items: center;
+    padding: 5px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    transition: all 200ms linear;
+}
+.btn-aside-contact:hover{
+    background-color: rgb(4, 65, 96);
+    box-shadow: 0px 0px 35px -2px black;
+    
+}
+.aside-contacts-options{
+    display: flex;
+    flex-flow:column nowrap;
+    color: var(--font-color-primary);
+}
+.aside-contacts-options>button{
+    color: var(--font-color-primary);
+}
+.aside-contacts-options>section{
+    min-width: 200px;
+}
+.aside-contacts-options>section:last-child{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.aside-contacts-options>section:last-child>div{
+    flex: 1;
+    display: grid;
+    text-align: center;
+    border-width: 0px 0px 2px 0px;
+    border-style: solid;
+    transition: border 200ms linear;
+}
+.aside-contacts-options>section:last-child>div button{
+    text-align: center;
+    color: var(--font-color-primary);
+    margin: 10px;
+}
+.aside-contacts-content{
+    position: relative;
+    height: 100%;
+    color:var(--font-color-primary);
+    text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    padding-top: 1em;
+    gap: 1em;
+}
+.aside-contacts-content>div{
+    flex: 1;
+}
+
+.active-aside-contacts{
+    border-color: cyan;
+}
+.disable-aside-contacts{
+    border-color: transparent;
+}

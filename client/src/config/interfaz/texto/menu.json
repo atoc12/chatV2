@@ -1,0 +1,16 @@
+{
+    "tittle":"Menu",
+    "options1":{
+        "start":"Inicio",
+        "search":"Buscar",
+        "chats":"Chats",
+        "notificaction":"Notificaciones",
+        "alerts":"Alertas",
+        "accont":"Cuenta"
+    },
+    "options2":{
+        "settings":"Ajustes",
+        "close":"Cerrar sesión"
+    }
+    
+}

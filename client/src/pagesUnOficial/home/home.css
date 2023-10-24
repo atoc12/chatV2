@@ -1,0 +1,50 @@
+@media screen and (min-width:661px) {
+    #home>div:last-child{
+        padding:0em 1em 0em 1em;
+    }
+    .form-home-sup > input{
+        max-width: 200px;
+    }    
+}
+@media screen and (max-width:660px) {
+    .form-home-sup > input {
+        max-width: 150px;
+    }
+}
+#home{
+    position: relative;
+    height: 100%;
+    display: grid;
+    grid-template-rows:8% 92%;
+    grid-template-columns: 100%;
+    color: var(--font-color-primary);
+}
+#home>div:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+}
+#home>div:nth-child(2){
+    padding: 0.5em;
+    position: relative;
+    overflow-y: scroll;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+}
+/* #home>div .post{
+    max-width: 600px;
+} */
+
+#section-messages-alert{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: min-content;
+    padding: 1em;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5em;
+}

@@ -1,0 +1,12 @@
+{
+    "errors":[
+        {
+            "value":0,
+            "info":"you need to use the apply() method before you can use this method"
+        },
+        {
+            "value":1,
+            "info":"It is necessary to select a collection ej: 'user','chat','etc'"
+        }
+    ]
+}

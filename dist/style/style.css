@@ -2,11 +2,19 @@
     padding: 0%;
     margin: 0%;
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
 }
 *::-webkit-scrollbar{
     width: 2px;
 }
 *::-webkit-scrollbar-thumb{
     width: 2px;
-    background-color: rgb(8, 14, 32);
+    background-color: rgb(2, 17, 29);
+}
+body{
+    background:rgb(5, 30, 56);
+}
+#root{
+    background:var(--background-gradient-primary);
+    background-position: 100% 100%;
 }

@@ -15,23 +15,47 @@ const ObtenerPublicacion = require('./DataBase/schemas/publicaciones/function/ob
 const Publicacion = require('./DataBase/schemas/publicaciones/publicaciones.js');
 const ActualizarPublicacion = require('./DataBase/schemas/publicaciones/function/actualizar.js');
 const BorrarPublicacion = require('./DataBase/schemas/publicaciones/function/borrar.js');
+const compression = require('compression');
+const Usuario = require('./api/usuarios/user.js');
+const rest = require('./api/api.js');
+const Chats = require('./api/chat/chat.js');
+const Post = require('./api/publicacion/publicacion.js');
+
 /*--------------------------------Middelware----------------------------------------*/
-const carpetaPath = path.resolve(__dirname, '../carpetas');
+const carpetaPath = path.resolve(__dirname, '../../../carpetas');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null,  carpetaPath+'/usuario/icon/');
     },
     filename: function (req, file, cb) {
-      cb(null, file.originalname+"."+mimmeTypes.extension(file.mimetype))
+      cb(null, file.originalname+".jpeg")
+    //   mimmeTypes.extension(file.mimetype)
     }
   })
+  
 const upload = multer({storage:storage});
 app.use(cors({}));
 app.use(cookieParser());
 app.use(express.json());    
+app.use(compression());// habilita la compresión de texto
+// app.use('/api',rest);
 app.use('/usuario',userApi);
+app.use('/api',rest);
 app.use('/carpetas', express.static(carpetaPath));
 const user = {};//Se define una estructura
+(async()=>{
+    let chat1= await new Chats({value:{
+        participants:[
+            {
+                _id:"64dae5f4380166cae29522c5"
+            },
+            {
+                _id:"64daf9d407ebeeb56b9e9ea2"
+            }
+        ]
+    }}).create();
+})()
+
 io.on("connection",(socket)=>{
     // Estructura de cada usuario
     user[socket.id]={
@@ -43,6 +67,16 @@ io.on("connection",(socket)=>{
         token:null,
         chatJoin:null
     };
+
+    socket.on("get-user",async(datos)=>{
+        let response = await new Usuario({search:{_id:datos._id}}).read();
+        let data = null;
+        if(response.data){
+            data = response.data[0];
+        }
+        socket.emit("recive-user-session",{...response,data:data});
+    })
+
     /*-----------------------Conexion inicial------------------------------------ */
     socket.on("conexion",async (datos)=>user[socket.id]= await UserConnect(datos,socket));
     socket.on("validar-token",async (datos)=>await ValidarToken(datos,socket));
@@ -67,9 +101,7 @@ io.on("connection",(socket)=>{
     /*--------------------------------Buscador---------------------------------- */
     socket.on("buscar-usuario",async(datos)=>{
         try{
-            // console.log("a");
-            // if()
-            let resultado = await User.find({ name: { $regex: new RegExp(`${datos}`, "i") } }).select('name picture _id');
+            let resultado = await User.find(datos.busqueda? datos.search : { name:{ $regex: new RegExp(`${datos}`, "i") } }).select('name picture _id');
             // console.log()
             socket.emit("busqueda-resultado",resultado);
         }catch(err){
@@ -83,7 +115,13 @@ io.on("connection",(socket)=>{
             if(datos.filter == 'usuario'){
                 resultado = await User.find({}).where('name').regex(busqueda);
             }else if(datos.filter == 'publicacion'){
-                resultado = await Publicacion.find({}).where('content').regex(busqueda);
+                resultado = await ObtenerPublicacion({
+                    body:{
+                        where:'content',
+                        search:{},
+                        regex:busqueda
+                    }
+                });
             }
             socket.emit("busqueda-resultado",resultado);
         }catch(err){
@@ -101,11 +139,69 @@ io.on("connection",(socket)=>{
     })
     socket.on("obtener-publicacion",async (datos)=>{
         try{
-            // console.log(datos);
             let res = await ObtenerPublicacion({body:{
                 search:datos
             }});
             socket.emit("recibir-publicacion",res);
+        }catch(err){
+            console.log(err);
+        }
+    })
+    socket.on("obtener-comentarios",async (datos)=>{
+        try{
+            let {search} = datos;
+            console.log(search);
+            let response = await Publicacion.findById(search).select(`response`);
+            let id = response.response.map(response => response._id.toString());
+            let busqueda = await Publicacion.find({_id:{$in:id}});
+            let array =id.flatMap(data=>busqueda.filter(item=> item._id.toString()==data));
+            if(id.length != array){
+                response.response=array;
+                response.save();
+            }
+            let id_creator = busqueda.map(creator => creator.creator.toString());
+            let creador = await User.find({_id:{$in:id_creator}}).select("_id name picture email");
+            let estructura = busqueda.flatMap(data=>{
+                let ind = creador.filter(user => user._id.toString() === data.creator.toString())[0];
+                if(ind){
+                    return {
+                        _id:data._id.toString(),
+                        creator:data.creator.toString(),
+                        name: ind.name,
+                        email: ind.email,
+                        content:data.content,
+                        like:data.like,
+                        status:data.status,
+                        channels: data.channels,
+                        categories: data.categories,
+                        timestamp: data.timestamp,
+                    };
+                }
+            })
+            socket.emit("recibir-comentarios",estructura);
+        }catch(err){
+            console.log(err);
+        }
+    
+    })
+    socket.on("crear-comentario",async (datos)=>{
+        try{
+            let {search,value} = datos;
+            let create = await new Publicacion({
+                creator:value.sender,
+                content:value.content,
+                categories:value.categories,
+                timestamp:value.timestamp
+            });
+            
+            if(create){
+                let response = await Publicacion.findOne(search);
+                response.response.push(create);
+                create.myresponse.push(response);
+                await response.save();
+                await create.save();
+            }
+            socket.emit("recargar-comentarios",true);
         }catch(err){
             console.log(err);
         }
@@ -120,8 +216,9 @@ io.on("connection",(socket)=>{
                 timestap:datos.publicacion.timestap
             }
             let res = await CrearPublicacion({body:publicacion_structure})
+            console.log(res);
         }catch(err){
-            console.log(err);
+            console.log("error");
         }
     })
     socket.on("borrar-publicacion",async(datos)=>{
@@ -131,25 +228,21 @@ io.on("connection",(socket)=>{
             console.log(err);
         }
     })
-    socket.on("actualizar-publicacion",async(datos)=>{
-        try{
-            await ActualizarPublicacion({
-                body:{
-                    search:{
-                        _id:datos.publicacion,
-                    },
-                    update:datos.update,
-                    user:datos.user
-                }
-            });
-        }catch(err){
-            console.log(err);
-        }
+    
+
+
+    socket.on("update-post",async(datos)=>{
+        console.log("actualizar");
+        let response = await new Post(datos).update();
+        socket.to("index").emit("recive-post-update-"+datos.search._id,response);
+        socket.emit("recive-post-update-"+datos.search._id,response);
     })
-    socket.on("borrar-publicacion",async(datos)=>{
+    socket.on("delete-post",async(datos)=>{
         try{
-            await BorrarPublicacion({body:{search:{_id:datos.publicacion,},user:datos.user}});
-            socket.emit("nuevas-publicaciones",{});
+            console.log("borrar");
+            let response = await new Post(datos).delete();
+            socket.to("index").emit("recive-post-update-"+datos.search._id,response);
+            socket.emit("recive-post-update-"+datos.search._id,response);
         }catch(err){
             console.log(err);
         }

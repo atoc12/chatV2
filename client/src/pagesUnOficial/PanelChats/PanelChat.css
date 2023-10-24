@@ -1,0 +1,32 @@
+#Panel-chat{
+    height: 100%;
+    display: grid;
+    grid-template-rows: min-content  auto;
+}
+#Panel-chat-options{
+    grid-row: 1/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7em;
+    gap: 1rem;
+    flex-flow: row wrap;
+}
+#Panel-chat-options>button{
+    color: var(--font-color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#Panel-chat-options>button>svg{
+    font-size: 1.5rem;
+}
+
+#Panel-chats-container{
+    grid-row: 2/2;
+    display: flex;
+    flex-flow: row wrap;
+    overflow-y:scroll;
+    justify-content: space-around;
+    overflow-x: hidden;
+}

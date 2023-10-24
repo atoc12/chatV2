@@ -1,0 +1,23 @@
+#theme-page{
+    position: relative;
+    color: var(--font-color-primary);
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 20% auto 20%;
+}
+#theme-page >button:first-of-type{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#example-menu{
+    
+}
+#example-main{
+    
+}
+#example-contact{
+    
+}

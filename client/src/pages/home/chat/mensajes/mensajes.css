@@ -1,0 +1,41 @@
+.mensaje-div{
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.mensaje-div>div:first-child{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: grid;
+    overflow: hidden;
+}
+.mensaje-div>div:nth-child(2){
+    position: absolute;
+    top: 100%;
+    color: var(--font-color-secondary);
+    font-size: 10px;
+}
+.mensaje-div>div:last-child{
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    position: relative;
+    border-radius: 5px;
+    overflow-wrap: anywhere;
+}
+.mensaje-div>div:last-child>div{
+    position: absolute;
+    bottom: 100%;
+    min-width: 150px;   
+    display: flex;
+    font-size: 10px;
+    color: var(--font-color-secondary);
+}
+.mensaje-div>div:last-child>p{
+    color: var(--font-color-primary);
+}

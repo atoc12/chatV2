@@ -4,7 +4,7 @@ const publicacionSchema = new Schema({
     creator:{
         type:Schema.Types.ObjectId,
         ref:"usuarios",
-        require:true
+        required:true
     },
     picture:{
         type:String,
@@ -14,6 +14,7 @@ const publicacionSchema = new Schema({
             _id:{
                 type:Schema.Types.ObjectId,
                 ref:"usuarios",
+                required:true,
             },
             timestamp: {
                 type: String,
@@ -23,8 +24,33 @@ const publicacionSchema = new Schema({
     ],
     content:{
         type:String,
-        require:true,
+        required:true,
     },
+    myresponse:[
+        {
+            _id:{
+                type:Schema.Types.ObjectId,
+                ref:'publicacion',
+            },
+            timestamp:{
+                type: String,
+                default: Date
+            }
+        }
+    ],
+    response:[
+        {
+            _id:{
+                type:Schema.Types.ObjectId,
+                ref:'publicacion',
+            },
+            timestamp:{
+                type: String,
+                default: Date
+            }
+            
+        }
+    ],
     categories:[],
     channels:[
         {   
@@ -41,5 +67,20 @@ const publicacionSchema = new Schema({
         default: Date
     }
 })
+
+publicacionSchema.path('like').validate(function (likes) {
+    const uniqueUserIds = new Set();
+    for (const like of likes) {
+        if (uniqueUserIds.has(like._id.toString())) {
+            return false;
+        }
+        uniqueUserIds.add(like._id.toString());
+    }
+    return true;
+}, 'Likes must be unique within the same publication.');
+
+
+
+
 const Publicacion = model('publicacion',publicacionSchema);
 module.exports = Publicacion;

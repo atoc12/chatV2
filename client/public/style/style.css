@@ -1,0 +1,20 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+*::-webkit-scrollbar{
+    width: 4px;
+}
+*::-webkit-scrollbar-thumb{
+    width: 2px;
+    background-color: rgba(12, 100, 172, 0.374);
+}
+body{
+    background:rgb(5, 30, 56);
+}
+#root{
+    background:var(--background-gradient-primary);
+    background-position: 100% 100%;
+}

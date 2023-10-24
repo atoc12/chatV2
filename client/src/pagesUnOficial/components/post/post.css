@@ -1,0 +1,204 @@
+.post{
+    display: flex;
+    flex-flow: row nowrap;
+    height: min-content;   
+    background-color: transparent;
+    padding: 1rem 0.5rem 1rem 0.5em ;
+    border-radius: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.097);
+    transition: border  200ms linear;
+    gap: 10px;
+    position: relative;
+}
+.link-user-post{
+    position: relative;
+    z-index: 99;
+}
+.post-profile-icon{
+    z-index: 99;
+    max-width: 1.5rem;
+    min-width: 1.5rem;
+}
+.post-content-primary{
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    box-sizing: border-box;
+}
+.post-content-primary > * {
+    flex: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* .post{
+    display: flex;
+    flex-flow: column nowrap;
+    height: min-content;   
+    background-color: transparent;
+    padding: 1em;
+    border-radius: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.097);
+    transition: border  200ms linear;
+    max-height: 500px;
+} */
+.post:hover{
+    border: 1px solid rgba(0, 255, 255, 0.153);
+    box-shadow: 0px 0px 6px -5px cyan;
+}
+.post a{
+    color: var(--font-color-secondary);
+    text-decoration: none;
+}
+.post a:hover{
+    color: var(--font-color-primary);
+}
+.post:hover .post-sup-options{
+    display: block;
+}
+.post-sup-bar{
+    display: flex;
+    flex-flow: row nowrap;
+    position: relative;
+}
+.post-sup-options{
+    z-index: 10;
+    display: none;
+    position: absolute;
+    top:10px;
+    right: 10px;
+    color: var(--font-color-primary);
+}
+.post-sup-options>div>div{
+    position: absolute;
+    left: -20px;
+    background-color: var(--background-transparency);
+}
+.post-sup-options button{
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--font-color-primary);
+    padding: 5px;
+    transition: all 200ms linear;
+}
+.post-sup-options button:hover{
+    background-color: var(--button-hover-tertiary);
+    border-radius: 5px;
+}
+.post-sup-options:hover >div>div{
+    display: flex;
+    position: absolute;
+}
+.post-sup-options>div>div{
+    display: none;
+    flex-flow: column nowrap;
+}
+
+.post-sup-bar>section:first-child{
+    flex: 1;
+    display: flex;
+    flex-flow:row wrap;
+    gap: 1em;
+    align-items: center;
+}
+.post-sup-info>div:first-child{
+    width: 2rem;
+}
+/* .post-mid-bar{
+    min-height: min-content;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+} */
+/* .post-mid-bar>section{
+    flex: 1;
+    overflow: hidden;
+} */
+.post-mid-bar>section>p{
+    position: relative;
+    margin: 1rem 0 1rem 0;
+    color: var(--font-color-primary);
+    font-size: 1rem;
+}
+.post-bot-bar{
+    display: flex;
+    flex-flow: row nowrap;
+}
+.post-bot-bar>section{
+    flex: 1;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+    gap: 1.5em;
+    
+}
+.post-bot-bar{
+    align-items: center;
+    justify-content: center;
+}
+.post-bot-bar>section>section{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5em;
+    z-index: 9;
+    max-height: 1rem;
+}
+.post-bot-bar>section button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--font-color-secondary);
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    transition: all 200ms linear;
+}
+.post-bot-bar>section span {
+    color: var(--font-color-secondary);
+    transition: all 200ms linear;
+}
+.post-bot-bar>section svg {
+    width: 100%;
+    height: 100%;
+}
+.active-post{
+    background-color: rgba(6, 245, 233, 0.105);
+    box-shadow: 0px 0px 5px 5px rgba(6, 245, 233, 0.105) ;
+    filter: drop-shadow(
+        0px 0px 2px rgba(0, 255, 255, 0.483)
+    );
+    color: cyan !important;
+}
+.active-post + span{
+    color: cyan !important;
+}
+.post-bot-bar>section button:hover{
+    background-color: rgba(6, 245, 233, 0.105);
+    box-shadow: 0px 0px 5px 5px rgba(6, 245, 233, 0.105);
+    filter: drop-shadow(
+        0px 0px 2px rgba(0, 255, 255, 0.483)
+    );
+    color: cyan;
+}
+.post-bot-bar>section button:hover + span{
+    color: cyan;
+}
+
+
+.post-redirect{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+}

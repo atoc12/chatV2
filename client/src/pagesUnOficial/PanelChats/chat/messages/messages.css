@@ -1,0 +1,49 @@
+.msj-card{
+    margin: 10px;
+    display: flex;
+    color: var(--font-color-primary);
+}
+.msj-card-content{
+    --color-content:rgb(47, 68, 78);
+    display: flex;
+    gap: 1em;
+    min-height: 50px;
+    min-width: 50px;
+    max-width: 40%;
+    border-radius: 10px;
+    background-color: var(--color-content);
+    padding: 0.8rem;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.msj-card-content::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--color-content);
+}
+.msj-card-content>section:last-of-type{
+    display: flex;
+    justify-content: center;
+    flex: 1;   
+}
+
+
+
+.me{    
+    justify-content: end;
+}
+.me>section::after{
+    left: 100%;
+}
+
+.sender{
+    justify-content: start;
+}
+.sender>section::after{
+    right: 100%;
+}

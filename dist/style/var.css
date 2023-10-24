@@ -1,13 +1,36 @@
 :root{
     /*------------------Fondos--------------------------------*/
-    --background-primary:red;
+    --background-primary:rgba(0, 0, 0, 0.566);
     --background-secondary:rgb(223, 223, 223);
+    --background-tertiary:rgb(20, 38, 54);
     --background-hover:gray;
+    --background-gradient-primary:linear-gradient(45deg,rgb(21, 40, 54),rgb(12, 16, 26));
+    --background-transparency:rgba(0, 0, 0, 0.566);
+    --background-transparency-secondary:rgba(0, 0, 0, 0.102);
+    --background-transparency-tertiary:rgba(0, 0, 0, 0.915);
+    /* ----------------Color-fonts--------------------------- */
+    --font-color-primary:white;
+    --font-color-secondary:gray;
+    --font-color-tertiary:rgb(86, 239, 206);
+    --font-color-gradient-primary:linear-gradient(45deg,cyan,blue);
+    --font-color-text-primary:rgb(208, 203, 203);
     /*-----------------Botones------------------------------- */
-    --button-primary:black;
-    --button-secondary:black;
-    --button-hover:red;
+    --button-primary:rgb(29, 55, 113);
+    --button-hover-primary:rgb(5, 35, 145);
+    --button-hover-secondary:rgba(17, 243, 228, 0.986);
     /*-----------------Scroll-------------------------------*/
     --scroll-color:cyan;
     --scroll-color-secondary:blue;
+    /*------------------border---------------------------- */
+    --border-primary:2px solid gray;
+    --border-secondary:2px solid rgba(255, 255, 255, 0.254);
+    /*-----------------shadow------------------------------*/
+    --shadow-box-primary:0px 0px 1px 3px rgba(0, 0, 0, 0.155);
+    --shadow-box-secondary:0px 0px 2px 2px white;
+    --shadow-box-content:0px 0px 50px -2px rgba(0, 0, 0, 0.52);
+    /*-----------------Select-------------------------------- */
+    --select-primary:cyan;
+    /* -------------------Response--------------------------- */
+    --color-response-positive:green;
+    --color-response-negative:red;
 }

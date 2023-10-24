@@ -1,0 +1,27 @@
+.LoadScreen{
+    height: 100vh;
+}
+#loading-container {
+    position: absolute;
+    /* background: radial-gradient(rgba(1, 42, 99, 0.671) 10%,black); */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vw;
+    overflow: hidden;
+    display: grid;
+}
+#loading-container>canvas {
+    position: relative;
+    z-index: 9;
+}
+  
+
+
+@keyframes animacionini1  {
+    
+}

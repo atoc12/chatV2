@@ -1,0 +1,13 @@
+{
+    "buttons":{ 
+        "contact":"Contactos",
+        "requests":"Solicitud",
+        "add":"Añadir",
+        "delete":"Eliminar",
+        "accept":"Aceptar"
+
+    },
+    "messages":{
+        "requests":"No hay solicitudes"
+    }
+}

@@ -23,23 +23,14 @@ const userSchema = new Schema({
     },
     solicitud:[
         {
-            _id:{
-                type:Schema.Types.ObjectId,
-                ref:"usuarios",
-            },
-            name:String
+            type:Schema.Types.ObjectId,
+            ref:"usuarios",
         }
     ],
     contactos:[
         {
-            _id:{
-                type:Schema.Types.ObjectId,
-                ref:"usuarios",
-            },
-            chat_id:{
-                type:Schema.Types.ObjectId,
-                ref:"chats",
-            },
+            type:Schema.Types.ObjectId,
+            ref:"usuarios",
         }
     ],
     notificaciones:[
@@ -58,14 +49,22 @@ const userSchema = new Schema({
             }
         }
     ],
-    mis_publicaciones:[
+    post:[
         {
-            name:String,
-            content:String,
-            timestamp: {
-                type: Date,
-                default: Date.now,
-            }
+            type:Schema.Types.ObjectId,
+            ref:"publicacion",
+        }
+    ],
+    post_like:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:"publicacion",
+        }
+    ],
+    post_save:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:"publicacion",
         }
     ],
     conexion:{
@@ -79,8 +78,22 @@ const userSchema = new Schema({
     socket_id:{
         type:String,
         default:null
-    }
+    },
+    permissions:[
+        
+    ]
 });
+userSchema.path('solicitud').validate(function (solicitudes) {
+    const uniqueUserIds = new Set();
+    for (const solicitud of solicitudes) {
+        if (uniqueUserIds.has(solicitud._id.toString())) {
+            return false;
+        }
+        uniqueUserIds.add(solicitud._id.toString());
+    }
+    return true;
+}, 'Ya se ha enviado una solicitud.');
+
 userSchema.index({ name: "text" });
 const User = model('usuarios',userSchema);
 

@@ -1,0 +1,28 @@
+{
+    "user":[
+        {
+            "level_permision":"basic",
+            "params_view":{"name":1,"email":1,"_id":1},
+            "code_value":1
+        },
+        {
+          "level_permision":"admin",
+          "params_view":{},
+          "code_value":8
+        },
+        {
+            "level_permision":"owner",
+            "params_view":{},
+            "code_value":9
+        }
+
+    ],
+
+    "post":[
+
+    ],
+
+    "chats":[
+
+    ]
+}

@@ -1,0 +1,229 @@
+@media screen and (min-width:661px) {
+    #menu{
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+    }
+    .menu-title{
+        text-align: center;
+        height: 50px;
+        overflow: hidden;
+    }
+    .menu-title{
+        display: flex;
+        flex-flow: row nowrap;
+    }
+    .menu-title>span{
+        order: 2;
+        align-items: center;
+        justify-content: center;
+    }
+    .menu-title>button{
+        min-width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: inherit;
+        order: 1;
+        font-size: 30px;
+        color: var(--font-color-primary);
+    }
+    .nav-menu{
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 1em;
+        margin-top: 1em;
+    }
+    .nav-menu>section{
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50%;
+        margin: 5px 20px 0px 20px;
+    }
+    .nav-menu>section>a{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-flow: row nowrap;
+        text-align: center;
+    }
+    .nav-menu>section>a>svg{
+        min-width: 60px;
+        max-width: 50px;
+        padding: 0.5em;
+        height: 100%;
+    }
+    .nav-menu>section>a>span{
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        overflow: hidden;
+        z-index: 99;
+    }
+    .disable-labels-menu{
+        width: 100px;
+    }
+    .disable-labels-menu .nav-menu>section:hover>a>span , .disable-labels-menu .nav-menu-2 .btn-menu:hover>span{
+        display: flex;
+        font-size: 12px;
+        align-items: center;
+        justify-content: center;
+        max-height: 20px;
+        margin-left:20px;
+    }
+    .disable-labels-menu .btn-menu{
+        width: min-content;
+    }
+    .disable-labels-menu .nav-menu span ,.disable-labels-menu .nav-menu-2 .btn-menu>span{
+        display: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 100%;
+        background-color: var(--background-transparency);
+        border-radius: 5px;
+        padding: 0.2em;
+        text-align: center;
+    }
+    .disable-labels-menu span::after{
+        content: '';
+        position: absolute;
+        top: 5%;
+        left: -15%;
+        transform: translateX(-50%);
+        border-style: solid;
+        border-width: 10px 5px 0 5px;
+        rotate: 120deg;
+        border-color: rgba(0, 0, 0, 0.704) transparent transparent transparent;
+    }
+    .enable-labels-menu{
+        width: 200px;
+    }
+    .enable-labels-menu .nav-menu-2{
+        width: 100%;
+    }
+    .enable-labels-menu .nav-menu span,.enable-labels-menu .nav-menu-2 span{
+        display: flex;
+        padding: 1em;
+    }
+    #menu>div>div:nth-child(2)>section{
+        border-radius: 50%;
+    }
+    #menu>div>div:nth-child(2)>section:hover{
+        /* transform: scale(1.2); */
+        border-radius: 10%;
+    }
+}
+@media screen and (max-width:660px) {
+    #menu{
+        order:2;
+    }
+    #menu svg{
+        width: 100%;
+        height: 100%;
+        font-size: 30px;
+    }
+    .nav-menu-2{
+        display: none;
+    }
+    #menu>div>:nth-child(2){
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+    }
+    #menu>div>div:nth-child(2)>section{
+        flex: 1;
+        height: 100%;
+        display: flex;
+    }
+    #menu>div>div:nth-child(2)>section>a{
+        flex: 1;
+        padding: 0.5em;
+    }
+    #menu>div span{
+        display: none;
+    }
+    .menu-title{
+        display: none;
+    }
+    #menu>div>div:nth-child(2)>section:hover{
+        border-radius: 5px;
+    }
+    
+}
+#menu{
+    color: var(--font-color-primary);
+    box-shadow: 0px 0px 10px -4px black;
+    transition: width 150ms linear;
+}
+#menu>div:first-child{
+    height: 100%;
+}
+#menu a{
+    color: var(--font-color-primary);
+    text-decoration: none;
+}
+#menu svg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#menu>div>div:nth-child(2)>section{
+    transition: 
+        background 300ms ease-in-out,
+        border-radius 100ms linear,
+        transform 200ms linear
+    ;
+}
+#menu>div>div:nth-child(2)>section:hover{
+    background-color:var(--background-transparency);
+}
+
+.nav-menu-2{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    padding: 1em;
+}
+.btn-menu{
+    color: var(--font-color-primary);
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    border-radius: 50%;
+    box-sizing: border-box;
+    height: 50px;
+    position: relative;
+}
+.btn-menu svg{
+    box-sizing: border-box;
+    font-size: 30px;
+    min-width: 60px;
+    max-width: 60px;
+}
+.btn-menu span {
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    align-items: center;
+}
+
+.btn-menu{
+    transition: 
+        background 300ms ease-in-out,
+        border-radius 100ms linear,
+        transform 200ms linear
+    ;
+}
+.btn-menu:hover{
+    border-radius: 10%;
+    background-color:var(--background-transparency);
+}

@@ -1,0 +1,33 @@
+#ajustes{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 50px auto;
+}
+#ajustes>div:first-child{
+    display: flex;
+    justify-content: center;
+}
+#ajustes>div:first-child>ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    list-style: none;
+}
+#ajustes>div:first-child>ul>li{
+    flex: 1;
+    cursor: pointer;
+    transition: all 200ms linear;
+    border-width: 0px 0px 2px 0px;
+    border-style: solid;
+}
+#ajustes>div:first-child>ul>li>a{
+    color: var(--font-color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}

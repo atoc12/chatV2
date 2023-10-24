@@ -1,0 +1,103 @@
+.Chat::-webkit-scrollbar{
+    width: 5px;
+    background-color: rgba(255, 255, 255, 0.308);
+    border-radius: 10px;
+}
+.Chat::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+}
+.Chat{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.Chat-op{
+    color: var(--font-color-primary);
+    padding: 1em;
+    font-size: 1rem;
+    border-radius: 100%;
+    transition: border-radius 300ms ease-in-out,background 100ms linear;
+}
+.name-chat{
+    flex: 1;
+    color: var(--font-color-primary);
+    font-weight: lighter;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Chat-op:hover{
+    background-color: rgba(255, 255, 255, 0.137);
+    border-radius: 0px;
+}
+.Chat-top-info{
+    height: 50px;
+    display: flex;
+    position: sticky;
+    background-image: linear-gradient(45deg,rgb(4, 17, 43), rgb(19, 85, 160)  );
+    z-index: 9;
+    top: 0;
+}
+
+.Chat-mid-content{
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.Chat-bottom{
+    bottom: 0;
+    position: sticky;
+    min-height: min-content;
+    display: flex;
+}
+
+.form-chat-area{
+    flex: 1;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+.form-chat-area>textarea{
+    min-width: 100px;
+    width: 40%;
+    resize: none;
+    background: transparent;
+    color: var(--font-color-primary);
+    border: 1px solid rgba(255, 255, 255, 0.301);
+    border-radius: 5px;
+    outline: none;
+    transition: border 200ms linear;
+    display: flex;
+    font-size: 1rem;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: start;
+}
+.form-chat-area>textarea:focus{
+    border: 1px solid var(--input-border-secondary);
+}
+.form-chat-area>button{
+    display: flex;
+    min-width: 50px;
+    align-items: center;
+    justify-content: center;
+    color: var(--font-color-primary);
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.5em;
+}
+
+.form-chat-area>button:hover{
+    background-color: var(--button-secondary);
+}
+
+
+

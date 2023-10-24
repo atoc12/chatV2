@@ -1,0 +1,72 @@
+#Post-index{
+    overflow-y: scroll;
+    max-height: 100vh;
+}
+.post-index-btn-back{
+    position: sticky;
+    top: 0;
+    color: var(--font-color-primary);
+    padding: 0.8em;
+    z-index: 99;
+}
+.post-index-btn-back>svg{
+    font-size: 1.5rem;
+}
+.post-index-content-primary{
+    padding: 1em;
+}
+.post-index-content-primary .post{
+    min-height: 200px;
+}
+
+.post-index-content-primary .post-sup-info{
+    max-height: 20px;
+}
+.post-index-form{
+    width: 100%;
+    position: sticky;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.form-comment{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+    gap: 1em;
+    padding: 1.2em;
+}
+.form-comment>section:first-child{
+    width: 100%;
+    display: flex;
+}
+.form-comment>section:last-child{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+.btn-send-comment{
+    padding: 0.5em;
+    font-size: 1.05rem;
+    color: var(--font-color-secondary);
+    border-radius: 10px;
+}
+.post-index-form textarea{
+    background: transparent;
+    flex: 1;
+    resize: none;
+    color: var(--font-color-primary);
+    border: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.322);
+    padding: 1em;
+    outline: none;
+    font-size: 1.2rem;
+}
+.post-index-comments{
+    border-top: 1px solid rgba(128, 128, 128, 0.322);
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    padding: 3em;
+    color: var(--font-color-primary);
+}

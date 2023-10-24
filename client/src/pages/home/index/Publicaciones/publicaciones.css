@@ -1,0 +1,162 @@
+.publicacion{
+    margin: 5px;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    transition: all 200ms linear;
+    overflow: hidden;
+    border-radius: 0px;
+}
+.publicacion:hover{
+    border-radius: 10px;
+}
+/* -------------------------parte superior de la publicacion------------------------------------------ */
+.publicacion>span:first-of-type{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+.publicacion>div:first-of-type{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 10px;
+    align-items: center;
+    z-index: 999;
+}
+.publicacion>div>span.icon{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.publicacion>div>span.icon>img{
+    width: 30px;
+    height: 30px;
+}
+.publicacion>div:first-of-type>a{
+    text-decoration: none;
+    color: var(--font-color-primary);
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+.publicacion>div:first-of-type>a:hover{
+    color: cyan;
+}
+.publicacion>div>div.option-publicacion{
+    display: none;
+}
+.categorias-publicacion>ul{
+    list-style: none;
+    color: var(--font-color-secondary);
+    font-size: 10px;
+}
+.categorias-publicacion>ul>li{
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+}
+.categorias-publicacion{
+    max-width: 200px;
+    overflow: hidden;
+}
+/*-----------------------------------------------mid publicacion-------------------------------------- */
+.mid-public{
+    margin: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+.mid-public>div:last-of-type{
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--font-color-secondary);
+    margin: 10px;
+}
+
+.mid-public>div:last-of-type>section:first-of-type{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 2%;
+    z-index: 99;
+}
+.mid-public>div:last-of-type>section:first-of-type>section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 10%;
+}
+.mid-public>div:last-of-type>section:first-of-type>section>button{
+    color: inherit;
+    font-size: 20px;
+    transition: all 200ms linear;
+}
+.button-font-color-post{
+    color: var(--font-color-secondary);
+}
+.use-btn-post{
+    color:var(--button-primary-ligth);
+}
+.use-btn-post>button>svg{
+    filter: drop-shadow(0px 0px 4px var(--button-primary-ligth));
+}
+.mid-public>div:last-of-type>section:first-of-type>section>span{
+    color:inherit;
+    transition: all 200ms linear;
+}
+.mid-public>div:last-of-type>section:first-of-type>section>button:hover,.mid-public>div:last-of-type>section:first-of-type>section>button:hover + span{
+    color: var(--font-color-primary);
+}
+.mid-public>div:last-of-type>section:first-of-type>section>button>svg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mid-public>div:first-of-type{
+    display: grid;
+}
+.mid-public>div:first-of-type>p{
+    padding: 0px 30px 0px 30px;
+    color: var(--font-color-primary);
+    overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    font-size: 14px;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+.mid-public>div:first-of-type>div{
+    margin: 5px;
+}
+.mid-public>div>:first-of-type.publicacion{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.367);
+}
+.mid-public>div>:first-of-type.publicacion>div.mid-public>div:last-child{
+    align-items: end;
+    margin: 0;
+    padding: 0;
+}
+.mid-public>div>:first-of-type.publicacion>div.mid-public>div:last-child{
+    position: absolute;
+    top: 20px;
+    right: 5px;
+}
+.redirect-public{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 200ms linear;
+}
+.noliked{
+    
+}

@@ -1,0 +1,36 @@
+.lista-coincidencia{
+    text-decoration: none;
+    color: var(--font-color-primary);
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 0em 1em 0em;
+    transition: all 200ms linear;
+}
+.lista-coincidencia:hover{
+    border-radius: 5px;
+    background-color: var(--background-transparency);
+}
+.lista-coincidencia>div{
+    flex: 1;
+    display: flex;
+}
+.lista-coincidencia>div:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lista-coincidencia>div:first-child>span{
+    width: 50px;
+    height: 50px;
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.lista-coincidencia>div:first-child>span>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -1,0 +1,77 @@
+.accont{
+    overflow-y: scroll;
+    max-height: 100vh;
+    position: relative;
+    display: grid;
+    height: 100%;
+    grid-template-rows:min-content min-content auto;
+}
+.accont-content{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    padding: 1em;
+}
+.accont-options-div{
+    display: flex;
+    flex-flow: row nowrap;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.308);
+}
+.accont-options-div>*{
+    flex: 1;
+    display: flex;
+}
+.accont-options-div button{
+    flex: 1;
+    padding: 0.5em;
+    color: var(--font-color-primary);
+}
+.accont-header{
+    position: relative;
+    background-position:center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    --max-h-h:150px;
+    min-height: var(--max-h-h);
+    max-height: var(--max-h-h);
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    color: var(--font-color-primary);
+}
+.accont-header>section{
+    display: flex;
+    flex-flow: row nowrap;
+}
+.accont-user-info{
+    flex: 1;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0em 0em 0em 2em;
+}
+.accont-user-info>section:first-child{
+    width: 80px;
+}
+.accont-user-info>h1{
+    font-weight: 100;
+}
+.accont-user-options{
+    width: 100%;
+    bottom: 5px;
+    right: 5px;
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    
+}
+.accont-user-options button{
+    color: var(--font-color-primary);
+    padding: 0.5em;
+    background-color: rgba(0, 106, 255, 0.5);
+    border-radius: 5px;
+    text-shadow: 0px 2px 4px black;
+}
