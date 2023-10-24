@@ -16,10 +16,14 @@ const APP = express();
 const servidor = http.createServer(APP);
 const io = new Server(servidor,{cors:{}});
 const carpetaPath = path.resolve(__dirname, '../carpetas');
+const publicPath = path.resolve(__dirname, '../dist');
 APP.use('/carpetas', express.static(carpetaPath));
 APP.use(cors({}))
 APP.use(express.json());
 APP.use(REST)
+
+APP.use(express.static(publicPath));
+APP.get('*', (req, res) =>res.sendFile(path.join(publicPath, 'index.html')));
 
 //-----------------------DB------------------------------
 Conexion(process.env.DB);
