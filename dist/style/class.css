@@ -1,3 +1,16 @@
+@media screen and (min-width:660px) {
+    .btn-and-tooltip:hover>span{
+        display: block;
+    }
+}
+
+/*-------------------------------------------------- container---------------------------------------- */
+
+.container{
+    width: 100%;
+}
+
+
 /*----------------------------------------------------backgroudn------------------------------------- */
 .bkg-primary{
     background-color: var(--background-primary);
@@ -12,6 +25,7 @@
 /*------------------------------------------------------size----------------------------------------- */
 .w-vw-100{width: 100vw;}
 .max-w-vw-100{max-width: 100vw;}
+.min-w-100{min-width: 100px;}
 .w-all{width: 100%;}
 /* heigth */
 .h-100{
@@ -36,6 +50,12 @@
 .d-b{display: block;}
 .d-n{display: none;}
 /*--*/
+.hidden{
+    display: none;
+}
+
+
+
 /*-------------------------------------------------------gap---------------------------------------- */
 .gap-0-5{gap: 0.5em;}
 .gap-1{gap: 1em;}
@@ -66,8 +86,50 @@
     background-color:var(--button-hover-primary) ;
 }
 .btn-secondary{background-color:var(--button-secondary);}
+.btn-accept{
+    background-color: rgb(34, 156, 75);
+}
+.btn-accept:hover{
+    background-color: rgb(34, 98, 45);
+}
+.btn-decline{
+    background-color: rgb(156, 34, 38);
+}
+.btn-decline:hover{
+    background-color: rgb(106, 26, 28);
+}
+.btn-and-tooltip{
+    position: relative;
+}
+.btn-and-tooltip>span{
+    display: none;
+    position: absolute;
+    top: 100%;
+    color: var(--font-color-primary);
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: var(--background-transparency);
+}
+/* ---------------------------------------------------Formilario----------------------------------- */
+.form-search{
+    box-shadow: 0px 0px 10px -2px black;
+    padding: 0.5em;
+    background: transparent;
+    color: var(--font-color-primary);
+    border-radius: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.515);
+}
 /*------------------------------------------------------Input--------------------------------------- */
 .input{outline: none; color: var(--font-color-primary);}
+.input-primary{
+    background-color:transparent;
+    padding: 0.5em;
+    border: 1px solid rgba(128, 128, 128, 0.542);
+    box-shadow: var(--shadow-box-content);
+    border-radius: 5px;
+    outline: none;
+    color: var(--font-color-primary);
+}
 /*--------------------------------------------------Border------------------------------------------ */
 .border-primary{
     border: var(--border-primary);
@@ -110,7 +172,7 @@
     background-color: red;
     right: 0;
 }
-/* texto-gradietn */
+/*------------------------------------------------------ texto-gradietn------------------------------ */
 .t-g-1{
     background:var(--font-color-gradient-primary);    
     background-size: 300% 300%;
@@ -147,6 +209,21 @@
 }
 .active-color{
     color: var(--color-response-positive);
+}
+/* ---------------------Texto----------------------------------------------- */
+.text-center{
+    text-align: center;
+}
+/* animations-class */
+.op-1{
+    animation: opacity 500ms linear ;
+}
+@keyframes opacity {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
 }
 @keyframes loading {
     0%{
