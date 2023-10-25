@@ -15,7 +15,7 @@ import { Chat } from "../api-client/functions/chat/chat.js";
 import { AlertsMessage } from "./components/alerts/alerts.jsx";
 import { useAlert } from "../config/context/alert/alert.jsx";
 
-export const socket = io(appVar.ip);
+export const socket = io();
 export const Index = ()=>{
     const {user} = useUser();
     const {noti,setNoti} = useNotification();

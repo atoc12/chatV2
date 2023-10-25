@@ -23,8 +23,8 @@ APP.use(express.json());
 APP.use(REST)
 
 APP.use(express.static(publicPath));
-APP.get('*', (req, res) =>res.send("hola mundo"));
-// APP.get('*', (req, res) =>res.sendFile(path.join(publicPath, 'index.html')));
+// APP.get('*', (req, res) =>res.send("hola mundo"));
+APP.get('*', (req, res) =>res.sendFile(path.join(publicPath, 'index.html')));
 
 //-----------------------DB------------------------------
 Conexion(process.env.DB);
