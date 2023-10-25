@@ -1,29 +1,7 @@
-// const express = require("express");
-// const https = require("https");
-// const fs = require("fs");
-// const path = require("path");
-// const app = express();
-// app.use("/",(req,res,next)=>{
-//     res.send("hello from SSL server");
-// })
-
-// const  sslServer = https.createServer({
-//     key:'',
-//     cert:''
-// });
-
-// sslServer.listen(3443,()=>{
-//     console.log("server seguro abierto");
-// })
-
-
-
-
 require('dotenv').config()
 const express = require('express');
 const Conexion = require('./config/databases/conexion');
 const http = require("http");
-const https = require("https");
 const {Server} = require("socket.io");
 const cors = require('cors');
 const path = require("path");
@@ -34,13 +12,8 @@ const Publicacion = require('./config/databases/schemas/post/post_schema');
 const AddContact = require('./src/socket/contacts/add.js');
 const RemoveContact = require('./src/socket/contacts/remove');
 const Chat = require('./config/databases/schemas/chat/chat_schema');
-const fs = require('fs');
 const APP = express();
-const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/essec.ddns.net/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/essec.ddns.net/cert.pem')
-};
-const servidor = https.createServer(options,APP);
+const servidor = http.createServer(APP);
 const io = new Server(servidor,{cors:{}});
 const carpetaPath = path.resolve(__dirname, '../carpetas');
 const publicPath = path.resolve(__dirname, '../dist');
