@@ -1,5 +1,5 @@
 export const appVar ={
     // ip:"http://localhost",
-    ip:"https://essec.ddns.net",
+    ip:"http://52.67.110.73",
     port:"80"
 }

@@ -13,7 +13,11 @@ const AddContact = require('./src/socket/contacts/add.js');
 const RemoveContact = require('./src/socket/contacts/remove');
 const Chat = require('./config/databases/schemas/chat/chat_schema');
 const APP = express();
-const servidor = http.createServer(APP);
+const options = {
+    key: fs.readFileSync('/ruta/a/privkey.pem'),
+    cert: fs.readFileSync('/ruta/a/fullchain.pem')
+};
+const servidor = http.createServer(options,APP);
 const io = new Server(servidor,{cors:{}});
 const carpetaPath = path.resolve(__dirname, '../carpetas');
 const publicPath = path.resolve(__dirname, '../dist');
