@@ -2,21 +2,9 @@ import {Route, Routes , BrowserRouter, Navigate, Outlet} from 'react-router-dom'
 import { userContext } from './context/user/userContext'
 import { notiContext } from './context/notification/notificacionContext'
 import { useEffect, useState } from 'react'
-import { Home, socket } from '../pages/home/home';
-// import { Index } from '../pages/home/index';
-// import { Notificaciones } from '../pages/home/notificaciones/notificaciones';
-// import { Session } from '../pages/session/session';
-// import { Cuenta } from '../pages/home/cuenta/cuenta';
-// import { Ajustes } from '../pages/home/ajustes/ajustes';
-// import { PerfilAjuste } from '../pages/home/ajustes/perfil/perfil';
-// import { Interfaz } from '../pages/home/ajustes/interfaz/interfaz';
-// import { Soporte } from '../pages/home/ajustes/soporte/soporte';
-// import { Buscador } from '../pages/home/buscador/buscador';
 import { SolicitudContext } from './context/solicitud/solicitudContext';
 import { ContactosContext } from './context/contactos/contactos';
 import { TittleContext } from './context/tittle/tittlecontext';
-// import { Nuevos } from '../pages/session/nuevos/nuevos';
-// import { PublicaionPages } from '../pages/home/publicaciones/publicaciones';
 import { AlertContext } from './context/alert/alert';
 import { HomeTest } from '../pagesUnOficial/home/home';
 import { Index } from '../pagesUnOficial';
@@ -30,7 +18,6 @@ import { Notificaciones } from '../pagesUnOficial/notificaciones/notificaciones'
 import { ChatBody } from '../pagesUnOficial/PanelChats/chat/chat';
 import { PanelChat } from '../pagesUnOficial/PanelChats/PanelChat';
 import { ChatContext } from './context/chat/chat';
-import { ThemesPage } from '../pages/home/themes/themes';
 
 export const Rutas = ()=>{
     const [tittle,setTittle] = useState('home');
@@ -68,33 +55,6 @@ export const Rutas = ()=>{
                             <ContactosContext.Provider value={{contactos,setContactos}}>
                                 <ChatContext.Provider value={{chat,setChat}}>
                                     <BrowserRouter>
-                                        {/* <Routes>
-                                            <Route path='/home' element={<Home/>}>
-                                                <Route path={''} element={<Index/>} action={"buscador"}/>
-                                                {
-                                                    user ? 
-                                                    <>
-                                                        <Route path='usuario/:id' element={<Cuenta usuario={user}></Cuenta>}/>
-                                                        <Route path='notificaciones' element={<Notificaciones/>}/>
-                                                        <Route path='chat' element={<>chat</>}/>
-                                                        <Route path='contactos' element={<>contactos</>}/>
-                                                        <Route path='ajustes' element={<Ajustes></Ajustes>}>
-                                                            <Route path='perfil' element={<PerfilAjuste/>}/>
-                                                            <Route path='interfaz' element={<Interfaz/>}/>
-                                                            <Route path='soporte' element={<Soporte/>}/>
-                                                        </Route>
-                                                        <Route path='buscador' element={<Buscador></Buscador>}/>
-                                                        <Route path='publicacion/:id' element={<PublicaionPages/>}/>              
-                                                    </>
-                                                    :<></>
-                                                }
-                                            </Route>
-                                            <Route path='/session' element={user ? <Navigate to={"/home"} /> :null}>
-                                                <Route path='login' element={<Session/>}/>
-                                                <Route path='register' element={<Nuevos/>}/>
-                                            </Route>
-                                            <Route path='*' element={<Navigate to={"/home"}/>}/>
-                                        </Routes> */}
                                         <Routes>
                                             <Route path='' element={<Index/>}>
                                                 <Route path='home' element={<HomeTest/>}></Route>
@@ -107,11 +67,10 @@ export const Rutas = ()=>{
                                                     <Route path=':id' element={<ChatBody/>}></Route>
                                                 </Route>
                                             </Route>
-                                            <Route path='/themes' element={<ThemesPage/>}></Route>
+                                            {/* <Route path='/themes' element={<ThemesPage/>}></Route> */}
                                             <Route path='/login' element={!user ? <Session/> : <Navigate to={"/home"}/>}></Route>
                                             <Route path='/register' element={!user ? <Nuevos/> : <Navigate to={"/home"}/>}></Route>
                                         </Routes>
-
                                     </BrowserRouter>    
                                 </ChatContext.Provider>
                             </ContactosContext.Provider>

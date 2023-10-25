@@ -1,10 +1,12 @@
 :root{
     /*------------------Fondos--------------------------------*/
+    --background-primary-absolute:rgb(14, 161, 247);
     --background-primary:rgba(0, 0, 0, 0.566);
     --background-secondary:rgb(223, 223, 223);
     --background-tertiary:rgb(20, 38, 54);
     --background-hover:gray;
-    --background-gradient-primary:linear-gradient(45deg,rgb(21, 40, 54),rgb(12, 16, 26));
+    --background-gradient-primary:rgb(0, 14, 24);
+    /* --background-gradient-primary:linear-gradient(45deg,rgb(21, 40, 54),rgb(12, 16, 26)); */
     --background-transparency:rgba(0, 0, 0, 0.566);
     --background-transparency-secondary:rgba(0, 0, 0, 0.102);
     --background-transparency-tertiary:rgba(0, 0, 0, 0.915);
@@ -16,14 +18,21 @@
     --font-color-text-primary:rgb(208, 203, 203);
     /*-----------------Botones------------------------------- */
     --button-primary:rgb(29, 55, 113);
+    --button-secondary:rgb(25, 52, 92);
+    --button-primary-ligth:rgb(63, 196, 237);
     --button-hover-primary:rgb(5, 35, 145);
     --button-hover-secondary:rgba(17, 243, 228, 0.986);
+    --button-hover-tertiary:rgba(17, 77, 73, 0.986);
+    /* ----------------Input---------------------------------- */
+    --input-border-primary:rgb(30, 116, 116);
+    --input-border-secondary:rgb(13, 235, 235);
     /*-----------------Scroll-------------------------------*/
     --scroll-color:cyan;
     --scroll-color-secondary:blue;
     /*------------------border---------------------------- */
     --border-primary:2px solid gray;
     --border-secondary:2px solid rgba(255, 255, 255, 0.254);
+    --border-active:2px solid cyan;
     /*-----------------shadow------------------------------*/
     --shadow-box-primary:0px 0px 1px 3px rgba(0, 0, 0, 0.155);
     --shadow-box-secondary:0px 0px 2px 2px white;

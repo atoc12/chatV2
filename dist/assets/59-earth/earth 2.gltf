@@ -1,0 +1,281 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v3.3.27",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0,
+                1,
+                2
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "earth",
+            "rotation" : [
+                0.20042221248149872,
+                0.8449326753616333,
+                0.09932255744934082,
+                0.4858546555042267
+            ],
+            "scale" : [
+                10,
+                10,
+                10
+            ]
+        },
+        {
+            "mesh" : 1,
+            "name" : "clouds",
+            "rotation" : [
+                0.48725390434265137,
+                0.8544436097145081,
+                -0.18020698428153992,
+                0.005930163897573948
+            ]
+        },
+        {
+            "mesh" : 2,
+            "name" : "atmo"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                1,
+                0.4716181457042694,
+                0.1117558628320694
+            ],
+            "name" : "earth",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0,
+                    0,
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "doubleSided" : true,
+            "name" : "clouds",
+            "pbrMetallicRoughness" : {}
+        },
+        {
+            "doubleSided" : true,
+            "name" : "atmo",
+            "pbrMetallicRoughness" : {}
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Mesh",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Mesh",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 3,
+                    "material" : 1
+                }
+            ]
+        },
+        {
+            "name" : "Mesh",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 7,
+                        "NORMAL" : 8,
+                        "TEXCOORD_0" : 9
+                    },
+                    "indices" : 3,
+                    "material" : 2
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 2334,
+            "max" : [
+                0.9872313737869263,
+                0.9975767135620117,
+                0.9872314929962158
+            ],
+            "min" : [
+                -0.9872310161590576,
+                -0.9975767135620117,
+                -0.9872310161590576
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 2334,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 2334,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 11904,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 2334,
+            "max" : [
+                9.921674728393555,
+                10.025655746459961,
+                9.921676635742188
+            ],
+            "min" : [
+                -9.921671867370605,
+                -10.025655746459961,
+                -9.921672821044922
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 2334,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 2334,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5126,
+            "count" : 2334,
+            "max" : [
+                9.971284866333008,
+                10.075763702392578,
+                9.971285820007324
+            ],
+            "min" : [
+                -9.971280097961426,
+                -10.075763702392578,
+                -9.971281051635742
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 8,
+            "componentType" : 5126,
+            "count" : 2334,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 9,
+            "componentType" : 5126,
+            "count" : 2334,
+            "type" : "VEC2"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 28008,
+            "byteOffset" : 0,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 28008,
+            "byteOffset" : 28008,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18672,
+            "byteOffset" : 56016,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 23808,
+            "byteOffset" : 74688,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 28008,
+            "byteOffset" : 98496,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 28008,
+            "byteOffset" : 126504,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18672,
+            "byteOffset" : 154512,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 28008,
+            "byteOffset" : 173184,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 28008,
+            "byteOffset" : 201192,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18672,
+            "byteOffset" : 229200,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 247872,
+            "uri" : "earth 2.bin"
+        }
+    ]
+}

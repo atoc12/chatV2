@@ -1,0 +1,28 @@
+{
+    "name":"ligth-theme",
+    "background":{
+        "primary":{
+            "hover":"red",
+            "value":"red"
+        },
+        "secondary":{
+            "hover":"red",
+            "value":"red"
+        }
+    },
+    "fonts":{
+        "font-family":"",
+        "fonts-color":{
+
+            "primary":{
+                "hover":"red",
+                "value":"red"
+            },
+
+            "secondary":{
+                "hover":"red",
+                "value":"red"
+            }
+        }
+    }
+}

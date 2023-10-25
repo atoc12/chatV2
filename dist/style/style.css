@@ -5,11 +5,11 @@
     box-sizing: border-box;
 }
 *::-webkit-scrollbar{
-    width: 2px;
+    width: 4px;
 }
 *::-webkit-scrollbar-thumb{
     width: 2px;
-    background-color: rgb(2, 17, 29);
+    background-color: rgba(12, 100, 172, 0.374);
 }
 body{
     background:rgb(5, 30, 56);

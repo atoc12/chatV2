@@ -1,4 +1,22 @@
 .icon{
+    z-index: 9;
+}
+
+.icon>img{
+    /* display: none; */
+    animation: op 300ms ease-in-out backwards;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@keyframes op {
+    to{
+        opacity: 0;
+    }from{
+        opacity: 1;
+    }
+}
+.icon{
     width: 100%;
     aspect-ratio: 1;
     object-fit: contain;
