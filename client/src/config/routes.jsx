@@ -33,7 +33,6 @@ export const Rutas = ()=>{
         if(user){
 
            ValidarToken().then(result=>{
-                    console.log(result);
                     if(result.type=="error"){
                         localStorage.removeItem("TOKEN");
                         localStorage.removeItem("USER");

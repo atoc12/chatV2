@@ -1,10 +1,8 @@
 import './post.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { CreatePost, GetData, GetPost } from './function';
-import { Publicaciones } from '../../api-client/functions/publicacion/publicacion';
+import { CreatePost, GetPost } from './function';
 import { useUser } from '../../config/context/user/userContext';
-import { User } from '../../api-client/functions/usuarios/usuario';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 import { Post } from '../components/post/post';
 import { Load } from '../components/load/load';
@@ -37,7 +35,10 @@ export const PostIndex = ()=>{
 
     const handlerSubmit = (e)=> {
         e.preventDefault();
-        CreatePost(user._id,id,e.target["contenido"].value).then(data=>console.log(data));
+        CreatePost(user._id,id,e.target["contenido"].value).then(data=>{
+            setComments([...comments,data.data]);
+            e.target["contenido"].value="";
+        });
     }
     
     return(

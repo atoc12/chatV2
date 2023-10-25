@@ -20,8 +20,11 @@ async function AddContact (datos,socket){
         socket.emit("recive-solicitud",response1.solicitud);
         socket.emit("recive-contact",response1.contactos);
         socket.emit("recive-chats",response1.chats)
+        socket.emit("recive-alert-news",{content:`${response2.name} se ha añadido a tus contactos`});
         socket.to(value).emit("recive-contact",response2.contactos);
         socket.to(value).emit("recive-chats",response2.chats);
+        socket.to(value).emit("recive-alert-news",{content:`${response1.name} se ha añadido a tus contactos`});
+        
 
     }catch(err){
         console.log(err);

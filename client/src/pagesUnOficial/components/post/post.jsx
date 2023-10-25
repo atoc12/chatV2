@@ -14,12 +14,37 @@ import { useUser } from '../../../config/context/user/userContext';
 export const Post = ({data=null,redirect=true,response=true})=>{
     const [post,setPost]= useState(data);
     const {user} = useUser();
+    const timeRes = new Date(post.timestamp);
+    const calculateTimeAgo = (timestamp) => {
+        const currentDate = new Date();
+        const postDate = new Date(timestamp);
+    
+        const timeDifference = currentDate - postDate;
+        const secondsDifference = Math.floor(timeDifference / 1000);
+    
+        if (secondsDifference < 60) {
+            return `hace ${secondsDifference}s`;
+        } else if (secondsDifference < 3600) {
+            const minutes = Math.floor(secondsDifference / 60);
+            return `hace ${minutes}m`;
+        } else if (secondsDifference < 86400) {
+            const hours = Math.floor(secondsDifference / 3600);
+            return `hace ${hours}h`;
+        } else {
+            const days = Math.floor(secondsDifference / 86400);
+            const options = { year: '2-digit', month: 'numeric', day: 'numeric' };
+            return postDate.toLocaleDateString('es-ES', options);
+        }
+    };
+
+    const [time, setTime] = useState(calculateTimeAgo(post.timestamp));
+
+    
 
     useEffect(()=>{
         socket.on("update-post-"+data._id,POST_UPDATE=>{
             setPost(POST_UPDATE);
         });
-
     },[])
 
     return(
@@ -42,6 +67,9 @@ export const Post = ({data=null,redirect=true,response=true})=>{
                     <section className='post-sup-info'>
                         <div>
                             <Link to={"/"+post.creator.name} className='link-user-post'>{post.creator.name}</Link>
+                        </div>
+                        <div>
+                            <span className='timestamp-post'>{time}</span>
                         </div>
                     </section>
 

@@ -38,7 +38,6 @@ export const ChatBody = ( ) => {
         socket.on("recive-messages"+id,(data)=>{
             setMessages(data);
             setLoadMsj(false);
-            console.log("recibir mensajes");
         })
         socket.on("recive-chat-info",(data)=>{
             setInfo(data);

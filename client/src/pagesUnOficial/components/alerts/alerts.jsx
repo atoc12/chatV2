@@ -1,17 +1,16 @@
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import "./alerts.css";
+import { useAlert } from "../../../config/context/alert/alert";
+import { useEffect } from "react";
 
-export const AlertsMessage = ()=>{
+export const AlertsMessage = ({alerta})=>{
     return(
         <div className="alert-message">
             <div>
-                <span>
-                    
-                </span>
-                <section className="alert-message-options">
-                    <button className="btn"><AiOutlineCloseCircle/></button>
+                <section>
+                    {alerta.content}
                 </section>
-                
+                <span></span>
             </div>
         </div>
     )
