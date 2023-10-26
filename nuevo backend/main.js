@@ -2,9 +2,11 @@ require('dotenv').config()
 const express = require('express');
 const Conexion = require('./config/databases/conexion');
 const http = require("http");
+const https = require("https");
 const {Server} = require("socket.io");
 const cors = require('cors');
 const path = require("path");
+const fs = require("fs");
 const User = require('./config/databases/schemas/user/user_schema');
 const errorescatch = require('./config/databases/errors/errors');
 const REST = require('./src/api/routes');
@@ -13,7 +15,13 @@ const AddContact = require('./src/socket/contacts/add.js');
 const RemoveContact = require('./src/socket/contacts/remove');
 const Chat = require('./config/databases/schemas/chat/chat_schema');
 const APP = express();
-const servidor = http.createServer(APP);
+const privateKeyPath = '/etc/letsencrypt/live/essec.ddns.net/privkey.pem'; // Ruta a tu clave privada
+const certificatePath = '/etc/letsencrypt/live/essec.ddns.net/fullchain.pem'; // Ruta a tu certificado completo
+const options = {
+    key: fs.readFileSync(privateKeyPath),
+    cert: fs.readFileSync(certificatePath)
+};
+const servidor = https.createServer(options,APP);
 const io = new Server(servidor,{cors:{}});
 const carpetaPath = path.resolve(__dirname, '../carpetas');
 const publicPath = path.resolve(__dirname, '../dist');
@@ -21,6 +29,7 @@ APP.use('/carpetas', express.static(carpetaPath));
 APP.use(cors({}))
 APP.use(express.json());
 APP.use(REST)
+
 
 APP.use(express.static(publicPath));
 // APP.get('*', (req, res) =>res.send("hola mundo"));

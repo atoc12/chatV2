@@ -16,7 +16,7 @@ export class Coleccion {
             RESPONSE:response
         }
         this.fetchData={
-            url:"/",
+            url:appVar.ip+":"+appVar.port+"/",
             path:null,
             method:"POST",
             Authorization:token,
