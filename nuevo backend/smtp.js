@@ -8,7 +8,6 @@ const certificatePath = '/etc/letsencrypt/live/essec.ddns.net/fullchain.pem';
 
 // Configuración del servidor SMTP
 const server = new SMTPServer({
-  secure: true, // Habilita SSL/TLS
   key: fs.readFileSync(privateKeyPath), // Clave privada SSL
   cert: fs.readFileSync(certificatePath), // Certificado SSL
   onAuth(auth, session, callback) {
