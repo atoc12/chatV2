@@ -26,7 +26,7 @@ const server = new SMTPServer({
 
     // Envía el correo modificado
     const mailOptions = {
-      from: 'octaviosdf2@gmail.com', // Cambia a una dirección de correo válida
+      from: 'tudireccion@essec.ddns.net', // Cambia a una dirección de correo válida en tu dominio
       to: 'octaviosdf1@gmail.com',
       subject: 'Correo con seguimiento de apertura',
       text: 'Este correo tiene una imagen de seguimiento.',
@@ -49,5 +49,25 @@ const server = new SMTPServer({
 });
 
 server.listen(465, () => {
+  // Envía el correo a octaviosdf1@gmail.com al iniciar el servidor
+  const mailOptions = {
+    from: 'octavio@essec.ddns.net', // Cambia a una dirección de correo válida en tu dominio
+    to: 'octaviosdf1@gmail.com',
+    subject: 'Servidor SMTP seguro iniciado',
+    text: 'Tu servidor SMTP se ha iniciado correctamente.',
+  };
+
+  const transporter = nodemailer.createTransport({
+    sendmail: true, // Otras opciones pueden ser configuradas
+  });
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error al enviar el correo de notificación:', error);
+    } else {
+      console.log('Correo de notificación enviado:', info.response);
+    }
+  });
+
   console.log('Servidor SMTP seguro escuchando en el puerto 465');
 });
