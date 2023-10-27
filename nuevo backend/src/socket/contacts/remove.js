@@ -29,6 +29,7 @@ async function RemoveContact (datos,socket){
         //response socket
         socket.emit("recive-contact", response1.contactos);
         socket.emit("recive-chats", response1.chats);
+        socket.emit("recive-alert-news",{content:"Se ha eliminado un contacto"})
         socket.to(value._id).emit("recive-contact",response2.contactos);
         socket.to(value._id).emit("recive-chats",response2.chats);
         socket.leave(value._id);

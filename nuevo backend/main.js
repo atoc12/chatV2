@@ -17,11 +17,18 @@ const Chat = require('./config/databases/schemas/chat/chat_schema');
 const APP = express();
 const privateKeyPath = '/etc/letsencrypt/live/essec.ddns.net/privkey.pem'; // Ruta a tu clave privada
 const certificatePath = '/etc/letsencrypt/live/essec.ddns.net/fullchain.pem'; // Ruta a tu certificado completo
-const options = {
-    key: fs.readFileSync(privateKeyPath),
-    cert: fs.readFileSync(certificatePath)
-};
-const servidor = https.createServer(options,APP);
+const options = {};
+var servidor = null;
+try {
+    options.key = fs.readFileSync(privateKeyPath, 'utf8');
+    options.cert = fs.readFileSync(certificatePath, 'utf8');
+    servidor = https.createServer(options,APP);
+} catch (error) {
+    options.key = '';
+    options.cert = '';
+    servidor = http.createServer(options,APP);
+}
+
 const io = new Server(servidor,{cors:{}});
 const carpetaPath = path.resolve(__dirname, '../carpetas');
 const publicPath = path.resolve(__dirname, '../dist');
@@ -103,6 +110,23 @@ io.on("connection",(socket)=>{
         }
     })
 
+    socket.on("delete-noti",async (data)=>{
+        try{
+            const {user,notificacion} =  data
+            let userInfo = await User.findById(user);
+
+            userInfo.notificaciones.pull(notificacion);
+            await userInfo.save();
+
+            socket.emit("recive-alert",userInfo.notificaciones)
+            socket.emit("recive-alert-news",{content:"Notificación eliminada"});
+            
+
+        }catch(err){
+            console.log(err)
+        }
+    })
+
     socket.on("update-post",async (datos)=>{
         try{
                
@@ -164,6 +188,14 @@ io.on("connection",(socket)=>{
         }
 
     })
+    socket.on("joined-chat",(data)=>{
+        try{
+            socket.join(data);
+        }catch(err){
+            console.log(err);
+        }
+
+    });
     socket.on("new-message",async (data)=>{
         try{    
             const {message,chat_id,user} = data

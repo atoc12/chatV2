@@ -143,7 +143,13 @@ REST.post("/post/create",async(req,res)=>{
 
 REST.delete("/post/delete",async(req,res)=>{
     try{
-        res.json({message:"datos encontrados",type:"succes",data:null})
+
+        const {SEARCH,SPECIFY,VALUE,TOKEN} = req.body;
+
+        let response = await Publicacion.findByIdAndDelete(SEARCH._id);
+
+
+        res.json({message:"Publicacion eliminada",type:"succes",data:response})
     }catch(err){
         res.json(errorescatch(err));   
     }
@@ -151,6 +157,9 @@ REST.delete("/post/delete",async(req,res)=>{
 
 REST.put("/post/update",async(req,res)=>{
     try{
+        const {SEARCH,SPECIFY,VALUE,TOKEN} = req.body;
+
+
         res.json({message:"datos encontrados",type:"succes",data:null})
     }catch(err){
         res.json(errorescatch(err));   
