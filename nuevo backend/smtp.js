@@ -3,11 +3,12 @@ const fs = require('fs');
 const SMTPServer = require('smtp-server').SMTPServer;
 
 // Rutas a tus claves y certificados SSL
-const privateKeyPath = '/etc/letsencrypt/live/essec.ddns.net/privkey.pem';
-const certificatePath = '/etc/letsencrypt/live/essec.ddns.net/fullchain.pem';
+const privateKeyPath = '/etc/letsencrypt/live/essec.ddns.net/privkey.pem'; // Ruta a tu clave privada
+const certificatePath = '/etc/letsencrypt/live/essec.ddns.net/fullchain.pem'; // Ruta a tu certificado completo
 
 // Configuración del servidor SMTP
 const server = new SMTPServer({
+//   secure:true,
   key: fs.readFileSync(privateKeyPath), // Clave privada SSL
   cert: fs.readFileSync(certificatePath), // Certificado SSL
   onAuth(auth, session, callback) {
@@ -30,15 +31,15 @@ server.listen(465, () => {
 const transporter = nodemailer.createTransport({
   host: 'essec.ddns.net', // Servidor SMTP
   port: 465, // Puerto seguro para SSL/TLS
-  secure: true, // Habilitar SSL/TLS
+//   secure: true, // Habilitar SSL/TLS
   auth: {
     user: 'tu_usuario', // Usuario SMTP
     pass: 'tu_contraseña', // Contraseña SMTP
-  },
-  tls: {
-    // Configuración de TLS
-    ca: [fs.readFileSync(certificatePath)],
-  },
+  }
+//   tls: {
+//     // Configuración de TLS
+//     ca: [fs.readFileSync(certificatePath)],
+//   },
 });
 
 // Detalles del mensaje
