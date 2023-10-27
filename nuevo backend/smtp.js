@@ -7,8 +7,8 @@ const nodemailer = require('nodemailer');
 // Configura el servidor SMTP
 const server = new SMTPServer({
   secure: true, // Habilita la seguridad TLS
-  key : fs.readFileSync(privateKeyPath, 'utf8'),
-  cert : fs.readFileSync(certificatePath, 'utf8'),
+  key: fs.readFileSync(privateKeyPath, 'utf8'),
+  cert: fs.readFileSync(certificatePath, 'utf8'),
   onAuth(auth, session, callback) {
     // Lógica de autenticación
   },
@@ -26,8 +26,8 @@ const server = new SMTPServer({
 
     // Envía el correo modificado
     const mailOptions = {
-      from: 'octaviosdf1@gmail.com',
-      to: session.envelope.mailFrom.address,
+      from: 'octaviosdf2@gmail.com', // Cambia a una dirección de correo válida
+      to: 'octaviosdf1@gmail.com',
       subject: 'Correo con seguimiento de apertura',
       text: 'Este correo tiene una imagen de seguimiento.',
     };
