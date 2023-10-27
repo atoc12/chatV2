@@ -31,15 +31,10 @@ server.listen(465, () => {
 const transporter = nodemailer.createTransport({
   host: 'essec.ddns.net', // Servidor SMTP
   port: 465, // Puerto seguro para SSL/TLS
-//   secure: true, // Habilitar SSL/TLS
   auth: {
     user: 'tu_usuario', // Usuario SMTP
     pass: 'tu_contraseña', // Contraseña SMTP
   }
-//   tls: {
-//     // Configuración de TLS
-//     ca: [fs.readFileSync(certificatePath)],
-//   },
 });
 
 // Detalles del mensaje
