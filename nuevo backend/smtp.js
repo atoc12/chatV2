@@ -11,16 +11,6 @@ const server = new SMTPServer({
 //   secure:true,
   key: fs.readFileSync(privateKeyPath), // Clave privada SSL
   cert: fs.readFileSync(certificatePath), // Certificado SSL
-  onAuth(auth, session, callback) {
-    // Verifica las credenciales del usuario aquí
-    const username = 'tu_usuario';
-    const password = 'tu_contraseña';
-    if (auth.username === username && auth.password === password) {
-      return callback(null, { user: 'user' });
-    } else {
-      return callback(new Error('Autenticación fallida'));
-    }
-  },
 });
 
 server.listen(465, () => {
