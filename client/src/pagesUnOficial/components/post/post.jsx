@@ -11,9 +11,12 @@ import { BiMessageSquare } from 'react-icons/bi';
 import { Response } from './response/response';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../../config/context/user/userContext';
+import { useAlert } from '../../../config/context/alert/alert';
 export const Post = ({data=null,redirect=true,response=true})=>{
     const [post,setPost]= useState(data);
     const {user} = useUser();
+    const {alert,setAlert} =useAlert();
+    const [status,setStatus] = useState(true);
     const timeRes = new Date(post.timestamp);
     const calculateTimeAgo = (timestamp) => {
         const currentDate = new Date();
@@ -48,7 +51,7 @@ export const Post = ({data=null,redirect=true,response=true})=>{
     },[])
 
     return(
-        <div className='post' >
+        <div className='post'  style={status ? {} : {display:"none"}}>
             
             <div className='post-profile-icon'>
 
@@ -83,7 +86,10 @@ export const Post = ({data=null,redirect=true,response=true})=>{
                                 {
                                     user && post.creator._id === user._id ?
                                     <>
-                                        <button onClick={()=>Delete(post)}>delete</button>
+                                        <button onClick={()=>Delete(post).then(data=>{
+                                            setStatus(false);
+                                            setAlert([...alert,{content:data.message}])
+                                        })}>delete</button>
                                         <button>edit</button>
                                         <button onClick={()=>Update(post,{specify:"status",value:!post.status})}>disable</button>
                                     </>

@@ -12,7 +12,7 @@
     background-color: rgba(12, 100, 172, 0.374);
 }
 body{
-    background:rgb(5, 30, 56);
+    background:var(--bacground-color-body);
 }
 #root{
     background:var(--background-gradient-primary);

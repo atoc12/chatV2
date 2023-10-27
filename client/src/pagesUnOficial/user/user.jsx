@@ -13,6 +13,7 @@ import { socket } from '..';
 import { useSolicitud } from '../../config/context/solicitud/solicitudContext';
 import { useContactos } from '../../config/context/contactos/contactos';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
+import { BiArrowBack } from 'react-icons/bi';
 export const Accont = ()=>{
     const {user} = useUser();
     const {name} = useParams();
@@ -50,48 +51,56 @@ export const Accont = ()=>{
         
     },[userInfo,filter])
     return(
-        <div className="accont">
-            <div className='accont-header' style={userInfo && {backgroundImage:`url(${appVar.ip+"/carpetas/usuario/icon/pic-"+userInfo._id+".jpg"})`}}>
-                {
-                    userInfo ? 
-                        <>
-                            <section className='accont-user-info'>
-                                <section>
-                                    <Icon data={userInfo}/>
+        <>
+            <button className='back-btn btn btn-and-tooltip' onClick={()=>history(-1)}>
+                <MdOutlineArrowBackIosNew/>
+                <span>
+                    atras
+                </span>
+            </button>
+            <div className="accont">
+                <div className='accont-header' style={userInfo && {backgroundImage:`url(${appVar.ip+"/carpetas/usuario/icon/pic-"+userInfo._id+".jpg"})`}}>
+                    {
+                        userInfo ? 
+                            <>
+                                <section className='accont-user-info'>
+                                    <section>
+                                        <Icon data={userInfo}/>
+                                    </section>
+                                    <h1>{userInfo.name}</h1>
                                 </section>
-                                <h1>{userInfo.name}</h1>
-                            </section>
-                            
-                            <section className='accont-user-options'>
-                                {
-                                    user && userInfo._id != user._id && 
-                                    <OptionsUser
-                                         userInfo={userInfo} 
-                                         contactos={contactos.length > 0  && contactos.filter(element=> userInfo._id == element._id)[0]}
-                                         solicitud={solicitud.length > 0  && solicitud.reduce(element=> element._id === userInfo._id)}
-                                         isMyRequest={userInfo.solicitud.includes(user._id)}
-                                    />
-                                }
-                            </section>
-                        </>
-                    : null
-                }
+                                
+                                <section className='accont-user-options'>
+                                    {
+                                        user && userInfo._id != user._id && 
+                                        <OptionsUser
+                                            userInfo={userInfo} 
+                                            contactos={contactos.length > 0  && contactos.filter(element=> userInfo._id == element._id)[0]}
+                                            solicitud={solicitud.length > 0  && solicitud.reduce(element=> element._id === userInfo._id)}
+                                            isMyRequest={userInfo.solicitud.includes(user._id)}
+                                        />
+                                    }
+                                </section>
+                            </>
+                        : null
+                    }
+                </div>
+                <div className='accont-options-div'>
+                    <section>
+                        <button className='btn' onClick={()=>setFilter("post")}>Publicaciones</button>
+                    </section>
+                    <section>
+                        <button className='btn' onClick={()=>setFilter("post_like")}>Me gusta</button>
+                    </section>
+                </div>
+                <div className='accont-content'>
+                    { loadPub ? 
+                        <Load/> 
+                        :
+                        elements && elements.map((info,key)=> <Post key={key} data={info} /> )
+                    }               
+                </div>
             </div>
-            <div className='accont-options-div'>
-                <section>
-                    <button className='btn' onClick={()=>setFilter("post")}>Publicaciones</button>
-                </section>
-                <section>
-                    <button className='btn' onClick={()=>setFilter("post_like")}>Me gusta</button>
-                </section>
-            </div>
-            <div className='accont-content'>
-                { loadPub ? 
-                    <Load/> 
-                    :
-                    elements && elements.map((info,key)=> <Post key={key} data={info} /> )
-                }               
-            </div>
-        </div>
+        </>
     )
 }

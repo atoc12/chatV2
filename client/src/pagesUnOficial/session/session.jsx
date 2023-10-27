@@ -19,10 +19,8 @@ export const Session = ()=>{
                 password:e.target['pass'].value
             }
             let resultado = await new User({search:datos,session:true},"1").read().apply() ;
-            console.log(resultado);
             if(resultado.data){
                 const {session,notificaciones,...rest} = resultado.data[0];
-                console.log(notificaciones);
                 setNoti(notificaciones);
                 localStorage.setItem("USER",JSON.stringify(rest));
                 localStorage.setItem("TOKEN",session);

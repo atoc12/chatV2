@@ -1,3 +1,18 @@
+@media screen and (min-width:661px) {
+    .back-btn{
+        display: none;
+    }
+}
+
+.back-btn{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    font-size: 1.8rem ;
+    color: var(--font-color-primary);
+}
+
 .accont{
     overflow-y: scroll;
     max-height: 100vh;
@@ -29,8 +44,9 @@
 }
 .accont-header{
     position: relative;
-    background-position:center;
-    background-size: cover;
+    background-attachment: fixed;
+    background-size: contain;
+    perspective: 1.1px;
     background-repeat: no-repeat;
     --max-h-h:150px;
     min-height: var(--max-h-h);

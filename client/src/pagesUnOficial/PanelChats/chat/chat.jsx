@@ -47,6 +47,7 @@ export const ChatBody = ( ) => {
     
     useEffect(()=>{
         socket.emit("get-chat",{user:user,chat_id:id})
+        socket.emit("joined-chat",id);
     },[id]);
 
     useEffect(()=>{

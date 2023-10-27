@@ -23,6 +23,7 @@
 }
 
 #Panel-chats-container{
+    color: var(--font-color-primary);
     grid-row: 2/2;
     display: flex;
     flex-flow: row wrap;

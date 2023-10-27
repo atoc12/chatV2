@@ -81,7 +81,8 @@ export const Index = ()=>{
                 <div>
                     <Outlet/>
                 </div>
-                <AsideContacts/>
+                {user && <AsideContacts/>}
+
             </main>
             {
                 user ?

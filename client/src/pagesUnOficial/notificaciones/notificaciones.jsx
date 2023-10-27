@@ -7,6 +7,7 @@ import { socket } from '..';
 import { useNotification } from '../../config/context/notification/notificacionContext';
 import { useUser } from '../../config/context/user/userContext';
 import { useTittle } from '../../config/context/tittle/tittlecontext';
+import { useAlert } from '../../config/context/alert/alert';
 export const Notificaciones=()=>{
     const {tittle,setTittle} = useTittle();
     const {user,setUser} = useUser()
@@ -57,8 +58,11 @@ export const Notificaciones=()=>{
 
 const ListNoti =({data})=>{
     const fecha = new Date(data.timestamp);
+    const {user} = useUser();
+    const [status,setStatus] = useState(true);
+    const {alert,setAlert} = useAlert()
     return(
-        <div className='list-noti'>
+        <div className='list-noti' style={status ? {} :{display:"none"}}>
             <section>
                 <section>
                     <h1>
@@ -73,8 +77,8 @@ const ListNoti =({data})=>{
                 {data.content}
             </section>
             <div className='list-noti-buttons'>
-                <button onClick={()=> socket.emit("delete-noti",{_id:data._id})}><BsTrash/></button>
-                <button><AiOutlineCheck/></button>
+                <button onClick={()=> socket.emit("delete-noti",{user:user._id,notificacion:data._id,})}><BsTrash/></button>
+                {/* <button><AiOutlineCheck/></button> */}
             </div>
         </div>
 

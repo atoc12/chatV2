@@ -7,5 +7,5 @@ export async function Update (post,{specify,value}){
 
 export async function Delete(post){
     const POST = await new Publicaciones({search:{_id:post._id}},"2").delete().apply();
-    console.log(POST);
+    return POST;
 }

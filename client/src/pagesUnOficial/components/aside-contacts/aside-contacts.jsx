@@ -32,11 +32,6 @@ export const AsideContacts = ()=>{
                         </span>
                     </button>
                     <section>
-                        {/* <div className={`${option == "chats" ? "active-aside-contacts" : 'disable-aside-contacts'}`}>
-                            <button className='btn' onClick={()=>setOption('chats')}>
-                                Chats
-                            </button>
-                        </div> */}
                         <div className={`${option == "contacts" ? "active-aside-contacts" : 'disable-aside-contacts'}`}>
                             <button className='btn' onClick={()=>setOption('contacts')}>
                                 Contactos

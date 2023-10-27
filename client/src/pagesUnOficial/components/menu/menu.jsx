@@ -9,10 +9,12 @@ import { BsChatSquareDots, BsDoorClosed} from 'react-icons/bs';
 import textMenu from '../../../config/interfaz/texto/menu.json';
 import { useUser } from '../../../config/context/user/userContext';
 import { socket } from '../../index';
+import { useNotification } from '../../../config/context/notification/notificacionContext';
 
 
 export const Menu = ()=>{
     const {user,setUser} = useUser();
+    const {noti} = useNotification();
     const [open,setOpen]= useState(false);
     return(
         <div id="menu" className={`${open ? "enable-labels-menu" : "disable-labels-menu"}`}>
@@ -43,6 +45,7 @@ export const Menu = ()=>{
                     </section>
                     <section>
                         <Link to={"/alerts"} aria-label={textMenu.options1.alerts}>
+                            {noti && noti.length>0  &&<div className='alert-red'></div>}
                             <HiOutlineBellAlert/>
                             <span>{textMenu.options1.alerts}</span>
                         </Link>
@@ -68,12 +71,12 @@ export const Menu = ()=>{
                 </div>
 
                 <div>
-                    <Link className='btn-menu' to={`/themes`}>
+                    {/* <Link className='btn-menu' to={`/themes`}>
                         <MdOutlineColorLens/>
                         <span>
                             temas
                         </span>
-                    </Link>
+                    </Link> */}
                 </div>
 
                 <div>

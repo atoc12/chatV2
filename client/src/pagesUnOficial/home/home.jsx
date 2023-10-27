@@ -17,7 +17,21 @@ export const HomeTest = ()=>{
     const [load,setLoad] = useState(true);
     useEffect(()=>{
         GetPost().then(post=>{
-            setElements(post.data);
+            const sortedElements = post.data.sort((a, b) => {
+                // Convierte los timestamps a objetos Date para poder comparar
+                const dateA = new Date(a.timestamp);
+                const dateB = new Date(b.timestamp);
+            
+                // Compara las fechas y ordena de forma descendente
+                if (dateA > dateB) {
+                    return -1;
+                } else if (dateA < dateB) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+            setElements(sortedElements);
             setLoad(false);
         });
     },[]);

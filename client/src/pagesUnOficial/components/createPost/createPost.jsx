@@ -4,14 +4,17 @@ import {AiOutlinePlus} from 'react-icons/ai'
 import { BiCategoryAlt, BiWorld } from "react-icons/bi";
 import { Icon } from "../profile-icon/icon";
 import { createPostFunction } from "./functions/functions";
+import { useAlert } from "../../../config/context/alert/alert";
 export const CreatePost = ({user,contentElements,setContentElements})=>{
+    const {alert,setAlert} = useAlert();
     const [open,setOpen] = useState(false)
     const [content,setContent] = useState(null);
     const handlerSubmit=(e)=>{
         e.preventDefault();
         createPostFunction({value:{content:content},search:user}).then(datos=>{
-            setContentElements([...contentElements,datos.data]);
+            setContentElements([datos.data,...contentElements]);
             setOpen(false);
+            setAlert([...alert,{content:"Publicación creada"}])
         }).catch(err=>console.log(err));
         
     }
