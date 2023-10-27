@@ -50,14 +50,17 @@ export const PostIndex = ()=>{
                 </span>
             </button>
 
-            <div className='post-index-content-primary'>
-                {
-                    load && !postInfo ?
-                        <Load/>
-                    :
-                        <Post data={postInfo} redirect={false} />
-                }
-            </div>
+            {
+                user &&
+                <div className='post-index-content-primary'>
+                    {
+                        load && !postInfo ?
+                            <Load/>
+                        :
+                            <Post data={postInfo} redirect={false} />
+                    }
+                </div>
+            }
 
             <div className='post-index-form'>
                 <form onSubmit={(e)=>handlerSubmit(e)} className='form-comment'>
